@@ -166,6 +166,7 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
 /* END OF SETUP STYLES */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Lora', serif;
+  font-weight: 700;
 }
 
 body {

@@ -1,8 +1,11 @@
 #LCBO Airmiles Promotion App
+Started: 2015/08/04
+Authors: Anya Craig, Alexandra Davey & James McDermid
 
-We need you to create an APP for use as a Sales/Promotion tool. 
-
-It should show the current weeks bonus air miles promotions as well as It should allow the user to search for their closest store and the user can check to see what products that store has on promotion.
+##Instruction
+-Create an APP for use as a Sales/Promotion tool. 
+-Show the current weeks bonus air miles promotions
+-Allow the user to search for their closest store and check to see products that store has on promotion.
 
 ##Scope of Work:
 -Show a List of current promoted items
