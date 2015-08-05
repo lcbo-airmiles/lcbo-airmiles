@@ -27,8 +27,21 @@ app.test = function(){
 }; //end TEST function
 
 
+//1. We want the user to enter their postal code.
 
+//2. (as another option)We want the user to enable "geo location" to receive their location via GoogleMaps / Map Box, by clicking a button.
 
+//3. We want to 'smooth scroll' their results (whichever method they selected) further down the page. 
+//4. We want to return 3 LCBO locations within their postal code parameters.
+
+//5. We want to return a map displaying their LCBO locations using markers.
+//6. Once a store has been selected by the user, we will 'smooth scroll' to display the airmiles promotions, further down the page.
+
+//7. We want to display the available promotion images in a flickity gallery.
+//8. We want to display the available promotion information in a div (rgba) within the image.
+
+//9. We want to create an option for the user to select another store.
+//10. We wabt to create an option for the user to zoom to the top of the page if they wish to search again.
 
 // =============================================================================
 // INIT FUNCTION
