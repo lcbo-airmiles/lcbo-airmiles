@@ -19,3 +19,38 @@ h1, h2, h3, h4, h5, h6{
 body{
 	font-family: 'Josefin Sans', sans-serif;
 }
+
+header {
+	background-image: url("../images/grapes-background.jpg"); 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.grapes img {
+	display: block;
+	margin: 0 auto;
+}
+.airMiles {
+	margin: auto 0;
+}
+.airMilesTitle, .promotionsTitle {
+	background: $blue;
+	color: $white;
+}
+button {
+	border-radius: 5%;
+	background: $green;
+	color: $white;
+}
+.gallery {
+	background: $white;
+}
+
+.promotionsEnding h2 {
+	color: $blue;
+	background: $white;
+}
+.promotionsEnding img {
+	width: 20%;
+}

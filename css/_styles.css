@@ -174,42 +174,9 @@ body {
 }
 
 header {
-  background-image: url("../images/grapes-background.jpg");
+  background-image: url("images/grapes-background.jpg");
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-}
-
-.grapes img {
-  display: block;
-  margin: 0 auto;
-}
-
-.airMiles {
-  margin: auto 0;
-}
-
-.airMilesTitle, .promotionsTitle {
-  background: #1893cc;
-  color: #f7f6ed;
-}
-
-button {
-  border-radius: 5%;
-  background: #bed993;
-  color: #f7f6ed;
-}
-
-.gallery {
-  background: #f7f6ed;
-}
-
-.promotionsEnding h2 {
-  color: #1893cc;
-  background: #f7f6ed;
-}
-
-.promotionsEnding img {
-  width: 20%;
 }
