@@ -12,7 +12,7 @@ Authors: Anya Craig, Alexandra Davey & James McDermid
 	<title>LCBO Airmiles Promotion</title>
 	<!-- favicon -->
 	<link rel="shortcut icon" href="assets/icon.png" type="image/x-icon">
-	<link rel="icon" href="assets/icon.png" type="image/x-icon">
+	<link rel="icon" href="assets/lcbo-icon.png" type="image/x-icon">
 	<!-- apple icons -->
 	<link rel="apple-touch-icon" href="assets/icon.png" />
 	<!-- font-awesome -->
@@ -25,14 +25,49 @@ Authors: Anya Craig, Alexandra Davey & James McDermid
 	<link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-	<h1>LCBO</h1>
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae suscipit eius nobis dolorum maiores vel, beatae eveniet fuga tempora, esse aspernatur odio quis doloremque itaque ipsum nemo. Distinctio, reiciendis vel.</p>
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. In tenetur quaerat eaque nostrum, pariatur odit sapiente ipsa facere consequuntur unde possimus blanditiis, perspiciatis dolore provident inventore veniam vitae animi sint.</p>
-	<img src="http://www.fillmurray.com/g/200/300" alt="a duckling gone wrong">
+	<header class="grapes">
+		<img src="images/LCBO-logo.svg" alt="LCBO 2015 logo">
+	</header>
 
+	<section class="airMiles">
+		<div class="airMilesTitle">
+			<h1>Discover this week's Air Miles Promotions closest to you!</h1>
+		</div><!-- airMilesTitle -->
+		<div class="inputArea">
+			<input type="text" placeholder="Enter your Postal Code">
+			<h2> or </h2>
+			<button>Use Your Location</button>
+		</div><!-- inputArea -->
+	</section><!-- airMiles -->
+
+	<section class="locations">
+		<div class="stores"> 
+			<h3>Stores Closest to You</h3>
+			<h4>Select a store to view available Air Miles promotions</h4>
+		</div><!-- stores -->
+		<div class="map">
+		</div><!-- map -->
+	</section><!-- locations -->
+
+	<section class="promotions">
+		<div class="promotionsTitle">	
+			<h3>Air Miles Promotions for<h4><!-- store location --></h4></h3>
+		</div><!-- promotionsTitle -->
+		
+		<div class="gallery"> <!-- aka flickity -->	
+		</div><!-- gallery aka flickity-->
+		<div class="promotionsEnding">
+			<img src="images/luggage.svg" alt="an vector icon of a suitcase covered in stickers">
+			<h2>Collecting points for travel has never been so easy!</h2>
+		</div><!-- promotionsEnding -->
+	</section><!-- promotions -->
+
+
+	
+	
 
 	<!-- =============================================================
-	SCRITPS
+	SCRIPTS
 	================================================================ -->
 	<!-- jQuery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
