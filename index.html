@@ -21,6 +21,8 @@ Authors: Anya Craig, Alexandra Davey & James McDermid
 	<link href='http://fonts.googleapis.com/css?family=Lora:700,400|Josefin+Sans:400,700,300,400italic' rel='stylesheet' type='text/css'>
 	<!-- animate.css -->
 	<link rel="stylesheet" href="css/animate.css">
+	<!-- flickity -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flickity/1.1.0/flickity.min.css">
 	<!-- custom styles -->
 	<link rel="stylesheet" href="css/styles.css">
 </head>
@@ -34,7 +36,10 @@ Authors: Anya Craig, Alexandra Davey & James McDermid
 			<h1>Discover this week's Air Miles Promotions closest to you!</h1>
 		</div><!-- airMilesTitle -->
 		<div class="inputArea">
-			<input type="text" placeholder="Enter your Postal Code">
+			<form id="location" action="#">
+				<input class = 'user-input'type="text" placeholder="Enter your Postal Code">
+				<input type="submit">
+			</form>
 			<h2> or </h2>
 			<button>Use Your Location</button>
 		</div><!-- inputArea -->
@@ -58,9 +63,12 @@ Authors: Anya Craig, Alexandra Davey & James McDermid
 			<h3>Air Miles Promotions for<h4><!-- store location --></h4></h3>
 		</div><!-- promotionsTitle -->
 		
-		<div class="gallery"> <!-- aka flickity -->	
+		<div class="main-gallery js-flickity"> <!-- aka flickity -->	
+			<div class="gallery-cell"><img src="http://www.fillmurray.com/200/300" alt=""></div>
+			<div class="gallery-cell"><img src="http://www.fillmurray.com/200/300" alt=""></div>
+			<div class="gallery-cell"><img src="http://www.fillmurray.com/200/300" alt=""></div>
 		</div><!-- gallery aka flickity-->
-		
+
 		<div class="promotionsEnding">
 			<img src="images/luggage.svg" alt="an vector icon of a suitcase covered in stickers">
 			<h2>Collecting points for travel has never been so easy!</h2>
@@ -79,6 +87,8 @@ Authors: Anya Craig, Alexandra Davey & James McDermid
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7jzoJPTjtAmL4aumz26bnrGsDc8fDvuA"></script>
 	<!-- jQuery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<!-- flickity -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/flickity/1.1.0/flickity.pkgd.min.js"></script>
 	<!-- custom scripts -->
 	<script src="js/scripts.js"></script>
 </body>
