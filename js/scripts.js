@@ -98,12 +98,30 @@ app.inStock = function(items, store){
 			console.log(data);
 			//now we have the stock of the items on promo at the closest store....lets display it!
 			console.log('This is the inventory of ' + items[index].name + ' at ' + store.address_line_1 + ", " + store.city );
-			//console.log(data);
 			// so if the quantity is greater than 0 display it!
 			if( data.result.quantity > 0 ){
 				console.log(data.result.quantity);
+				//construct flickity slide
+
+				var itemImg = $('<img>').attr('src', items[index].image_url);
+				var itemName = $('<p>').text(items[index].name);
+				var itemPrice = $('<p>').text(value.bonus_reward_miles);
+
+
+				var galleryCell = $('<div>').addClass('gallery-cell').append(itemImg, itemName, itemPrice);
+
+				//default flickity stuff to get it working
+				var $gallery = $('.gallery').flickity().flickity('next').flickity( 'select', 2 );
+
+				$gallery.flickity('append', galleryCell);
+
+
+				//scroll page down to see results
+			    $('html, body').animate({
+			        scrollTop: $('.gallery').offset().top
+			    }, 1000);
 				
-			}else{
+			}else if ( ( data.result.quantity <= 0 ) || (!data.result) ){
 				console.log('Sorry not in stock!');
 			}
 			
@@ -131,15 +149,6 @@ app.inStock = function(items, store){
 // 	}); //end results function
 // } // end stores function
 
-//API CALL PSEUDO CODE
-
-// user enters postal code
-
-
-
-
-
-//1. We want the user to enter their postal code.
 
 //2. (as another option)We want the user to enable "geo location" to receive their location via 
 //GoogleMaps / Map Box, by clicking a button.
@@ -157,14 +166,6 @@ app.inStock = function(items, store){
 
 //use jquery to hide the div - > SHOW the hidden div BEFORE the map is revealed, make
 //the map slide in after we have shown the div. make the div first AND THEN put the map on the page.
-
-// //LEAFLET MAPBOX
-// var alexID = 'alexandradavey.n42d3egc';
-// var alexMap = 'https://a.tiles.mapbox.com/v4/alexandradavey.n42d3egc/page.html?access_token=pk.eyJ1IjoiYWxleGFuZHJhZGF2ZXkiLCJhIjoiNWI5NWYzY2Q0NTQyYjYyMmFjNWY5ZWEwZGE5MjAxZWMifQ.yQUY4RtfbkaeoUlcbsxy8g#4/45.89/-75.63';
-// var alexkey = 'pk.eyJ1IjoiYWxleGFuZHJhZGF2ZXkiLCJhIjoiNWI5NWYzY2Q0NTQyYjYyMmFjNWY5ZWEwZGE5MjAxZWMifQ.yQUY4RtfbkaeoUlcbsxy8g';
-// L.mapbox.accessToken = alexkey;
-// app.map = L.mapbox.map('#map',alexID).setView([44.129, -79.306], 7);
-
 
 
 
@@ -196,14 +197,13 @@ app.locationListener = function(){
 // =============================================================================
 app.init = function(){
 	app.locationListener();
+	//LEAFLET MAPBOX
+	var alexID = 'alexandradavey.n42d3egc';
+	var alexMap = 'https://a.tiles.mapbox.com/v4/alexandradavey.n42d3egc/page.html?access_token=pk.eyJ1IjoiYWxleGFuZHJhZGF2ZXkiLCJhIjoiNWI5NWYzY2Q0NTQyYjYyMmFjNWY5ZWEwZGE5MjAxZWMifQ.yQUY4RtfbkaeoUlcbsxy8g#4/45.89/-75.63';
+	var alexkey = 'pk.eyJ1IjoiYWxleGFuZHJhZGF2ZXkiLCJhIjoiNWI5NWYzY2Q0NTQyYjYyMmFjNWY5ZWEwZGE5MjAxZWMifQ.yQUY4RtfbkaeoUlcbsxy8g';
+	L.mapbox.accessToken = alexkey;
+	app.map = L.mapbox.map('map',alexID).setView([44.129, -79.306], 8);
 
-
-//7. We want to display the available promotion images in a flickity gallery.
-$('.gallery').flickity({
-	// options
-	cellAlign: 'left',
-	contain: true
-});
 }; // end init function
 
 // =============================================================================
