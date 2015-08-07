@@ -1,13 +1,4 @@
 <!DOCTYPE html>
-
-<!-- 
-LCBO Airmiles Promotion App
-Started: 2015/08/04
-Authors: Anya Craig, Alexandra Davey & James McDermid
-Googlemaps API key: AIzaSyClW6h6xMardy7pDYZaJ5QV9_12XvGzYxc
-:)
- -->
-
 <html lang="en">
 <head>
 	<!-- 
@@ -33,6 +24,8 @@ Googlemaps API key: AIzaSyClW6h6xMardy7pDYZaJ5QV9_12XvGzYxc
 	<link href='http://fonts.googleapis.com/css?family=Lora:700,400|Josefin+Sans:400,700,300,400italic' rel='stylesheet' type='text/css'>
 	<!-- animate.css -->
 	<link rel="stylesheet" href="css/animate.css">
+	<!-- flickity -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flickity/1.1.0/flickity.min.css">
 	<!-- custom styles -->
 	<link rel="stylesheet" href="css/styles.css">
 	<!-- flickity.css -->
@@ -45,6 +38,7 @@ Googlemaps API key: AIzaSyClW6h6xMardy7pDYZaJ5QV9_12XvGzYxc
     </script>
 </head>
 <body>
+
 	<div class="wrapper">
 		<header class="grapes">
 			<img src="images/LCBO-logo.svg" alt="LCBO 2015 logo">
@@ -66,7 +60,8 @@ Googlemaps API key: AIzaSyClW6h6xMardy7pDYZaJ5QV9_12XvGzYxc
 				</div><!-- airMilesTitle -->
 			</div>
 			<div class="inputArea">
-				<input type="text" placeholder="Enter your Postal Code">
+				<input type="text" id="inputPostal" placeholder="Enter your Postal Code">
+				<button class="submit">Submit</button>
 				<h2> or </h2>
 				<button>Use Your Location</button>
 			</div><!-- inputArea -->
@@ -84,23 +79,22 @@ Googlemaps API key: AIzaSyClW6h6xMardy7pDYZaJ5QV9_12XvGzYxc
 							<i class="fa fa-map-marker"></i>
 						</div> <!-- /.storeLeft -->
 						<div class="storeRight store1Right">
-							<p>Store Street Address</p>
-							<p>City and Postal Code</p>
-							<p>Phone Number</p>
-							<p>Opening Hours Today</p>
+							<p class="address1">Store Street Address</p>
+							<p class="cityPostal1">City and Postal Code</p>
+							<p class="phoneNubmber1">Phone Number</p>
+							<p class="openHours1">Opening Hours Today</p>
 						</div> <!-- /.storeRight -->
 					</div> <!-- /.store1 -->
-
 
 					<div class="store store2 clearfix">
 						<div class="storeLeft store2Left">
 							<i class="fa fa-map-marker"></i>
 						</div> <!-- /.storeLeft -->
 						<div class="storeRight store2Right">
-							<p>Store Street Address</p>
-							<p>City and Postal Code</p>
-							<p>Phone Number</p>
-							<p>Opening Hours Today</p>
+							<p class="address2">Store Street Address</p>
+							<p class="city-postal2">City and Postal Code</p>
+							<p class="phoneNubmber2">Phone Number</p>
+							<p class="openHours2">Opening Hours Today</p>
 						</div> <!-- /.storeRight -->
 					</div> <!-- /.store2 -->
 
@@ -109,10 +103,10 @@ Googlemaps API key: AIzaSyClW6h6xMardy7pDYZaJ5QV9_12XvGzYxc
 							<i class="fa fa-map-marker"></i>
 						</div> <!-- /.storeLeft -->
 						<div class="storeRight store3Right">
-							<p>Store Street Address</p>
-							<p>City and Postal Code</p>
-							<p>Phone Number</p>
-							<p>Opening Hours Today</p>
+							<p class="address3">Store Street Address</p>
+							<p class="city-postal3">City and Postal Code</p>
+							<p class="phoneNubmber3">Phone Number</p>
+							<p class="openHours3">Opening Hours Today</p>
 						</div> <!-- /.storeRight -->
 					</div> <!-- /.store3 -->
 
@@ -127,7 +121,7 @@ Googlemaps API key: AIzaSyClW6h6xMardy7pDYZaJ5QV9_12XvGzYxc
 				<h3>Air Miles Promotions for<span class="store-location"><!-- store location --></span></h3>
 			</div><!-- promotionsTitle -->
 			
-			<div class="gallery"> <!-- aka flickity -->	
+			<div class="gallery js-flickity"> <!-- aka flickity -->	
 				<div class="gallery-cell gallery-cell-1">1</div>
 				<div class="gallery-cell gallery-cell-2">2</div>
 				<div class="gallery-cell gallery-cell-3">3</div>
@@ -162,6 +156,8 @@ Googlemaps API key: AIzaSyClW6h6xMardy7pDYZaJ5QV9_12XvGzYxc
 
 	<!-- jQuery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<!-- flickity -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/flickity/1.1.0/flickity.pkgd.min.js"></script>
 	<!-- custom scripts -->
 	<script src="js/scripts.js"></script>
 	<!-- flickity.js -->
