@@ -253,13 +253,11 @@ header {
 #map 
 { 
 	height: 400px;
-	width:60%; 
+	width:100%; 
 	padding: 20%
 }
 .locations {
-	width: 80%;
-	border: 1px solid red;
-	margin: 0 auto;
+
 	display:flex;
 }
 .stores {
