@@ -7,37 +7,15 @@ var app = {};
 app.jamesAPI = 'MDo1ZmMzNGQ0Yy0zYWVmLTExZTUtODFkYi02YmQ0ZWM1NzJlOTQ6RDNTeEVIS1M4Zlh1M0E1UUZjMlFuRzFMWkhzbzcyeUQ2bnRN';
 // james' mapbox api key
 app.jamesMapbox = 'pk.eyJ1Ijoiamltc2F1cnVzIiwiYSI6IjM0NmIzMjllNGQzYzBlODY4NTQwMjlkMTA4YmM1OWIzIn0.GzyjWKJ4nnZarMZpjPCanQ';
-// user input variable
-app.userInput = '';
-
-// =============================================================================
-// PRODUCTS FUNCTION : returns the products on promotion
-// =============================================================================
-app.products = function(){
-	$.ajax({
-		url: 'http://lcboapi.com/products',
-		type: 'GET',
-		dataType: 'jsonp',
-		data: {
-			access_key: app.jamesAPI,
-			per_page: 100,
-			where: 'has_bonus_reward_miles',
-			where_not: 'is_dead'
-		}
-	}).then(function(data) {
-		console.log(data.result);
-	});//end results function
-}; //end TEST function
+// booze type
+app.boozeType = 'beer';
 
 
 // =============================================================================
 // STORES FUNCTION : returns stores closest to the user input
 // =============================================================================
-//4. We want to return 3 LCBO locations within their postal code parameters.
-//4a) We will make an AJAX call to LBCO to bring back their locations
-//4b) We will drop the LCBO locations in proximity to their postal code or geolocation.
-
-app.stores = function(){
+//take the users input location and return the closest store
+app.stores = function(location){
 	$.ajax({
 		url: 'http://lcboapi.com/stores',
 		type: 'GET',
@@ -45,16 +23,121 @@ app.stores = function(){
 		data: {
 			access_key: app.jamesAPI,
 			per_page: 5,
-			geo: app.userInput
-			//lat: 43.647777,
-			//lon:-79.369978
+			//users location is passed into the api request
+			geo: location
+		}
+		//data is the result of the api call....in this case it is an array with 5 objects representing locations
+	}).then(function(data) {
+		//console.log('These are the 5 stores closest to the USER');
+		//console.log(data.result);
+		//console.log(data.result[0].id);
+		//just grab the first location to start
+		app.store1 = data.result[0];
+		//console.log(app.store1);
+		//pass the closest store into a function to find beers on promo
+		app.promoBeers(app.store1);
+	}); //end results function
+	
+} // end stores function
+
+
+
+// =============================================================================
+// PRODUCTS FUNCTION : returns the products on promotion
+// =============================================================================
+
+//this function is passed a store and finds the 5 beers with the most airmiles reward miles
+app.promoBeers = function(store){
+
+	$.ajax({
+		url: 'http://lcboapi.com/products',
+		type: 'GET',
+		dataType: 'jsonp',
+		data: {
+			access_key: app.jamesAPI,
+			per_page: 10,
+			where: 'has_bonus_reward_miles',
+			where_not: 'is_dead',
+			order: 'bonus_reward_miles',
+			q: app.boozeType
 		}
 	}).then(function(data) {
+		//console.log('Beers on promotion!!');
+		//console.log the 5 beers found
+		//console.log(data.result);
+		app.beers = data.result;
+		//app.promoBeer_1 = data.result[0];
+		//app.promoBeer_2 = data.result[1];
+		//app.promoBeer_3 = data.result[2];
+		//app.promoBeer_4 = data.result[3];
+		//app.promoBeer_5 = data.result[4];
+		//pass the resulting array of beer objects into a function to check the stock and pass in the store from before
+		app.inStock(app.beers, store);
+	});//end results function
+	
+}; //end TEST function
 
-		console.log(data.result);
+
+// =============================================================================
+// INVENTORY FUNCTION : returns store inventory
+// =============================================================================
+app.inStock = function(items, store){
+	console.log('inStock fired');
+	console.log(items);
+	console.log(store);
+	//for each product on promotion we check the stock at the store
+	$.each(items, function(index, value){
+		$.ajax({
+			url: 'http://lcboapi.com/stores/' + store.id + '/products/' + items[index].id + '/inventory',
+			type: 'GET',
+			dataType: 'jsonp',
+			data: {
+				access_key: app.jamesAPI,
+			}
+		}).then(function(data) {
+			console.log(data);
+			//now we have the stock of the items on promo at the closest store....lets display it!
+			console.log('This is the inventory of ' + items[index].name + ' at ' + store.address_line_1 + ", " + store.city );
+			//console.log(data);
+			// so if the quantity is greater than 0 display it!
+			if( data.result.quantity > 0 ){
+				console.log(data.result.quantity);
+				
+			}else{
+				console.log('Sorry not in stock!');
+			}
+			
+		}); //end results function
+	});
+
+}//instock function
+
+//example: lcboapi.com/stores/634/products/388900/inventory
+// app.inventories = function(){
+// 	$.ajax({
+// 		url: 'http://lcboapi.com/inventories',
+// 		type: 'GET',
+// 		dataType: 'jsonp',
+// 		data: {
+// 			access_key: app.jamesAPI,
+// 			per_page: 100,
+// 			store_id: 634,
+// 			product_id: 388900
+// 		}
+// 	}).then(function(data) {
+// 		console.log('This is the inventory');
+// 		console.log(data.result);
 		
-	}); //end results function
-} // end stores function
+// 	}); //end results function
+// } // end stores function
+
+//API CALL PSEUDO CODE
+
+// user enters postal code
+
+
+
+
 
 //1. We want the user to enter their postal code.
 
@@ -75,13 +158,12 @@ app.stores = function(){
 //use jquery to hide the div - > SHOW the hidden div BEFORE the map is revealed, make
 //the map slide in after we have shown the div. make the div first AND THEN put the map on the page.
 
-var app = {};
-//LEAFLET MAPBOX
-var alexID = 'alexandradavey.n42d3egc';
-var alexMap = 'https://a.tiles.mapbox.com/v4/alexandradavey.n42d3egc/page.html?access_token=pk.eyJ1IjoiYWxleGFuZHJhZGF2ZXkiLCJhIjoiNWI5NWYzY2Q0NTQyYjYyMmFjNWY5ZWEwZGE5MjAxZWMifQ.yQUY4RtfbkaeoUlcbsxy8g#4/45.89/-75.63';
-var alexkey = 'pk.eyJ1IjoiYWxleGFuZHJhZGF2ZXkiLCJhIjoiNWI5NWYzY2Q0NTQyYjYyMmFjNWY5ZWEwZGE5MjAxZWMifQ.yQUY4RtfbkaeoUlcbsxy8g';
-L.mapbox.accessToken = alexkey;
-app.map = L.mapbox.map('#map',alexID).setView([44.129, -79.306], 7);
+// //LEAFLET MAPBOX
+// var alexID = 'alexandradavey.n42d3egc';
+// var alexMap = 'https://a.tiles.mapbox.com/v4/alexandradavey.n42d3egc/page.html?access_token=pk.eyJ1IjoiYWxleGFuZHJhZGF2ZXkiLCJhIjoiNWI5NWYzY2Q0NTQyYjYyMmFjNWY5ZWEwZGE5MjAxZWMifQ.yQUY4RtfbkaeoUlcbsxy8g#4/45.89/-75.63';
+// var alexkey = 'pk.eyJ1IjoiYWxleGFuZHJhZGF2ZXkiLCJhIjoiNWI5NWYzY2Q0NTQyYjYyMmFjNWY5ZWEwZGE5MjAxZWMifQ.yQUY4RtfbkaeoUlcbsxy8g';
+// L.mapbox.accessToken = alexkey;
+// app.map = L.mapbox.map('#map',alexID).setView([44.129, -79.306], 7);
 
 
 
@@ -95,11 +177,26 @@ app.map = L.mapbox.map('#map',alexID).setView([44.129, -79.306], 7);
 
 //10. We wabt to create an option for the user to zoom to the top of the page if they wish to search again.
 
+// =============================================================================
+// LOCATION LISTENER FUNCTION
+// =============================================================================
+app.locationListener = function(){
+	// when the postal code is submitted
+	$( "#location" ).submit(function( event ) {
+		//stop default action
+		event.preventDefault();
+		//get value from input field
+		app.postal = $('.user-input').val();
+		app.stores(app.postal);
+	});
+}
 
 // =============================================================================
 // INIT FUNCTION
 // =============================================================================
 app.init = function(){
+	app.locationListener();
+
 
 //7. We want to display the available promotion images in a flickity gallery.
 $('.gallery').flickity({
@@ -107,11 +204,6 @@ $('.gallery').flickity({
 	 	  cellAlign: 'left',
 	  	contain: true
 		});
-
-	app.products();
-	app.stores();
-
-
 }; // end init function
 
 // =============================================================================
@@ -121,3 +213,8 @@ $(function(){
 	console.log('document ready!');
 	app.init();
 }); // end document ready
+
+
+
+
+
