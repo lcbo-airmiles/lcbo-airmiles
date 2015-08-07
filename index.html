@@ -1,15 +1,18 @@
 <!DOCTYPE html>
-<!-- 
-LCBO Airmiles Promotion App
-Started: 2015/08/04
-Authors: Anya Craig, Alexandra Davey & James McDermid
-:)
- -->
 <html lang="en">
 <head>
+	<!-- 
+	LCBO Airmiles Promotion App
+	Started: 2015/08/04
+	Authors: Anya Craig, Alexandra Davey & James McDermid
+	:)
+	 -->
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>LCBO Airmiles Promotion</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1,user-scalable=no'">
+	<!--for the MapBox -->
+	<script src='https://api.mapbox.com/mapbox.js/v2.2.1/mapbox.js'></script>
+	<link href='https://api.mapbox.com/mapbox.js/v2.2.1/mapbox.css' rel='stylesheet' />
 	<!-- favicon -->
 	<link rel="shortcut icon" href="assets/icon.png" type="image/x-icon">
 	<link rel="icon" href="assets/lcbo-icon.png" type="image/x-icon">
@@ -32,6 +35,7 @@ Authors: Anya Craig, Alexandra Davey & James McDermid
 	<section class="airMiles">
 		<div class="airMilesTitle">
 			<h1>Discover this week's Air Miles Promotions closest to you!</h1>
+			<img src="images/airMilesCloud.png" alt="">
 		</div><!-- airMilesTitle -->
 		<div class="inputArea">
 			<input type="text" placeholder="Enter your Postal Code">
@@ -45,13 +49,13 @@ Authors: Anya Craig, Alexandra Davey & James McDermid
 			<h3>Stores Closest to You</h3>
 			<h4>Select a store to view available Air Miles promotions</h4>
 		</div><!-- stores -->
-		<div class="map">
+		<div class="map" id="map">
 		</div><!-- map -->
 	</section><!-- locations -->
 
 	<section class="promotions">
 		<div class="promotionsTitle">	
-			<h3>Air Miles Promotions for<h4><!-- store location --></h4></h3>
+			<h3>Air Miles Promotions for</h3>
 		</div><!-- promotionsTitle -->
 		
 		<div class="gallery"> <!-- aka flickity -->	
