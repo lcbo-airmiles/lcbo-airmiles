@@ -265,20 +265,28 @@ header {
 
 .airMiles input[type=text],
 .airMiles button {
-  width: 30%;
+  width: 25%;
   height: 60px;
   border-radius: 5px;
+  text-transform: uppercase;
   display: inline-block;
   border: none;
   font-size: 2em;
+  padding: 10px;
+}
+
+.airMiles button.submit {
+  width: auto;
+  margin-left: 10px;
 }
 
 .airMiles ::-webkit-input-placeholder {
-  font-size: 1.1em;
+  font-size: .8em;
   color: grey;
   text-transform: uppercase;
   text-align: center;
   font-weight: bold;
+  padding-left: -15px;
   vertical-align: middle;
 }
 

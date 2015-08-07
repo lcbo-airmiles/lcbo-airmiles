@@ -140,6 +140,15 @@ app.inStock = function(items, store){
 
 
 //1. We want the user to enter their postal code.
+app.postal;
+
+app.postalCode = function() {
+	$(".submit").on("click", function () {
+		app.postal = $("input[type=text]").val();
+		console.log (app.postal);
+
+	});
+}
 
 //2. (as another option)We want the user to enable "geo location" to receive their location via 
 //GoogleMaps / Map Box, by clicking a button.
@@ -158,12 +167,6 @@ app.inStock = function(items, store){
 //use jquery to hide the div - > SHOW the hidden div BEFORE the map is revealed, make
 //the map slide in after we have shown the div. make the div first AND THEN put the map on the page.
 
-// //LEAFLET MAPBOX
-// var alexID = 'alexandradavey.n42d3egc';
-// var alexMap = 'https://a.tiles.mapbox.com/v4/alexandradavey.n42d3egc/page.html?access_token=pk.eyJ1IjoiYWxleGFuZHJhZGF2ZXkiLCJhIjoiNWI5NWYzY2Q0NTQyYjYyMmFjNWY5ZWEwZGE5MjAxZWMifQ.yQUY4RtfbkaeoUlcbsxy8g#4/45.89/-75.63';
-// var alexkey = 'pk.eyJ1IjoiYWxleGFuZHJhZGF2ZXkiLCJhIjoiNWI5NWYzY2Q0NTQyYjYyMmFjNWY5ZWEwZGE5MjAxZWMifQ.yQUY4RtfbkaeoUlcbsxy8g';
-// L.mapbox.accessToken = alexkey;
-// app.map = L.mapbox.map('#map',alexID).setView([44.129, -79.306], 7);
 
 
 
@@ -204,6 +207,20 @@ $('.gallery').flickity({
 	 	  cellAlign: 'left',
 	  	contain: true
 		});
+
+
+	app.products();
+	app.stores();
+	app.postalCode();
+
+//LEAFLET MAPBOX
+var alexID = 'alexandradavey.n42d3egc';
+var alexMap = 'https://a.tiles.mapbox.com/v4/alexandradavey.n42d3egc/page.html?access_token=pk.eyJ1IjoiYWxleGFuZHJhZGF2ZXkiLCJhIjoiNWI5NWYzY2Q0NTQyYjYyMmFjNWY5ZWEwZGE5MjAxZWMifQ.yQUY4RtfbkaeoUlcbsxy8g#4/45.89/-75.63';
+var alexkey = 'pk.eyJ1IjoiYWxleGFuZHJhZGF2ZXkiLCJhIjoiNWI5NWYzY2Q0NTQyYjYyMmFjNWY5ZWEwZGE5MjAxZWMifQ.yQUY4RtfbkaeoUlcbsxy8g';
+L.mapbox.accessToken = alexkey;
+app.map = L.mapbox.map('map',alexID).setView([44.129, -79.306], 7);
+
+
 }; // end init function
 
 // =============================================================================
