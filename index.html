@@ -50,41 +50,6 @@ Googlemaps API key: AIzaSyClW6h6xMardy7pDYZaJ5QV9_12XvGzYxc
 			<img src="images/LCBO-logo.svg" alt="LCBO 2015 logo">
 		</header>
 
-
-	<section class="airMiles">
-		<div class="airMilesTitle">
-			<h1>Discover this week's Air Miles Promotions closest to you!</h1>
-			<img src="images/airMilesCloud.png" alt="">
-		</div><!-- airMilesTitle -->
-		<div class="inputArea">
-			<input type="text" placeholder="Enter your Postal Code">
-			<h2> or </h2>
-			<button>Use Your Location</button>
-		</div><!-- inputArea -->
-	</section><!-- airMiles -->
-
-	<section class="locations">
-		<div class="stores"> 
-			<h3>Stores Closest to You</h3>
-			<h4>Select a store to view available Air Miles promotions</h4>
-		</div><!-- stores -->
-		<div class="map" id="map">
-		</div><!-- map -->
-	</section><!-- locations -->
-
-	<section class="promotions">
-		<div class="promotionsTitle">	
-			<h3>Air Miles Promotions for</h3>
-		</div><!-- promotionsTitle -->
-		
-		<div class="gallery"> <!-- aka flickity -->	
-		</div><!-- gallery aka flickity-->
-		<div class="promotionsEnding">
-			<img src="images/luggage.svg" alt="an vector icon of a suitcase covered in stickers">
-			<h2>Collecting points for travel has never been so easy!</h2>
-		</div><!-- promotionsEnding -->
-	</section><!-- promotions -->
-
 		<section class="blackBar"></section><!-- the black bar under the header -->
 
 		<section class="airMiles">
@@ -149,7 +114,7 @@ Googlemaps API key: AIzaSyClW6h6xMardy7pDYZaJ5QV9_12XvGzYxc
 
 				</div><!-- /.storesBottom -->
 			</div><!-- stores -->
-			<div class="map">
+			<div class="map" id="map">
 			</div><!-- map -->
 		</section><!-- locations -->
 
@@ -190,8 +155,7 @@ Googlemaps API key: AIzaSyClW6h6xMardy7pDYZaJ5QV9_12XvGzYxc
 	<!-- =============================================================
 	SCRIPTS
 	================================================================ -->
-	<!-- google maps -->
-	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7jzoJPTjtAmL4aumz26bnrGsDc8fDvuA"></script>
+
 	<!-- jQuery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<!-- custom scripts -->
@@ -199,13 +163,7 @@ Googlemaps API key: AIzaSyClW6h6xMardy7pDYZaJ5QV9_12XvGzYxc
 	<!-- flickity.js -->
 	<script src="js/flickity.pkgd.min.js"></script>
 	<!-- flickity test -->
-	<script>
-		$('.gallery').flickity({
-	 	  // options
-	 	  cellAlign: 'left',
-	  	contain: true
-		});
-	</script>
+
 
 </body>
 </html>

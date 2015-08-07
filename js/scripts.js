@@ -33,6 +33,10 @@ app.products = function(){
 // =============================================================================
 // STORES FUNCTION : returns stores closest to the user input
 // =============================================================================
+//4. We want to return 3 LCBO locations within their postal code parameters.
+//4a) We will make an AJAX call to LBCO to bring back their locations
+//4b) We will drop the LCBO locations in proximity to their postal code or geolocation.
+
 app.stores = function(){
 	$.ajax({
 		url: 'http://lcboapi.com/stores',
@@ -60,9 +64,6 @@ app.stores = function(){
 
 //3. We want to 'smooth scroll' their results (whichever method they selected) further down the page.
 
-//4. We want to return 3 LCBO locations within their postal code parameters.
-//4a) We will make an AJAX call to LBCO to bring back their locations
-//4b) We will drop the LCBO locations in proximity to their postal code or geolocation.
 
 //3. We want to 'smooth scroll' their results (whichever method they selected) further down the page. 
 
@@ -80,14 +81,13 @@ var alexID = 'alexandradavey.n42d3egc';
 var alexMap = 'https://a.tiles.mapbox.com/v4/alexandradavey.n42d3egc/page.html?access_token=pk.eyJ1IjoiYWxleGFuZHJhZGF2ZXkiLCJhIjoiNWI5NWYzY2Q0NTQyYjYyMmFjNWY5ZWEwZGE5MjAxZWMifQ.yQUY4RtfbkaeoUlcbsxy8g#4/45.89/-75.63';
 var alexkey = 'pk.eyJ1IjoiYWxleGFuZHJhZGF2ZXkiLCJhIjoiNWI5NWYzY2Q0NTQyYjYyMmFjNWY5ZWEwZGE5MjAxZWMifQ.yQUY4RtfbkaeoUlcbsxy8g';
 L.mapbox.accessToken = alexkey;
-app.map = L.mapbox.map('map',alexID).setView([44.129, -79.306], 7);
+app.map = L.mapbox.map('#map',alexID).setView([44.129, -79.306], 7);
 
 
 
 
 //6. Once a store has been selected by the user, we will 'smooth scroll' to display the airmiles promotions, further down the page.
 
-//7. We want to display the available promotion images in a flickity gallery.
 
 //8. We want to display the available promotion information in a div (rgba) within the image.
 
@@ -101,9 +101,16 @@ app.map = L.mapbox.map('map',alexID).setView([44.129, -79.306], 7);
 // =============================================================================
 app.init = function(){
 
+//7. We want to display the available promotion images in a flickity gallery.
+$('.gallery').flickity({
+	 	  // options
+	 	  cellAlign: 'left',
+	  	contain: true
+		});
 
 	app.products();
 	app.stores();
+
 
 }; // end init function
 
