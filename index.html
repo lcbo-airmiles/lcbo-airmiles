@@ -1,13 +1,4 @@
 <!DOCTYPE html>
-
-<!-- 
-LCBO Airmiles Promotion App
-Started: 2015/08/04
-Authors: Anya Craig, Alexandra Davey & James McDermid
-Googlemaps API key: AIzaSyClW6h6xMardy7pDYZaJ5QV9_12XvGzYxc
-:)
- -->
-
 <html lang="en">
 <head>
 	<!-- 
@@ -33,6 +24,8 @@ Googlemaps API key: AIzaSyClW6h6xMardy7pDYZaJ5QV9_12XvGzYxc
 	<link href='http://fonts.googleapis.com/css?family=Lora:700,400|Josefin+Sans:400,700,300,400italic' rel='stylesheet' type='text/css'>
 	<!-- animate.css -->
 	<link rel="stylesheet" href="css/animate.css">
+	<!-- flickity -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flickity/1.1.0/flickity.min.css">
 	<!-- custom styles -->
 	<link rel="stylesheet" href="css/styles.css">
 	<!-- flickity.css -->
@@ -45,6 +38,7 @@ Googlemaps API key: AIzaSyClW6h6xMardy7pDYZaJ5QV9_12XvGzYxc
     </script>
 </head>
 <body>
+
 	<div class="wrapper">
 		<header class="grapes">
 			<img src="images/LCBO-logo.svg" alt="LCBO 2015 logo">
@@ -92,7 +86,6 @@ Googlemaps API key: AIzaSyClW6h6xMardy7pDYZaJ5QV9_12XvGzYxc
 						</div> <!-- /.storeRight -->
 					</div> <!-- /.store1 -->
 
-
 					<div class="store store2 clearfix">
 						<div class="storeLeft store2Left">
 							<i class="fa fa-map-marker"></i>
@@ -128,7 +121,7 @@ Googlemaps API key: AIzaSyClW6h6xMardy7pDYZaJ5QV9_12XvGzYxc
 				<h3>Air Miles Promotions for<span class="store-location"><!-- store location --></span></h3>
 			</div><!-- promotionsTitle -->
 			
-			<div class="gallery"> <!-- aka flickity -->	
+			<div class="gallery js-flickity"> <!-- aka flickity -->	
 				<div class="gallery-cell gallery-cell-1">1</div>
 				<div class="gallery-cell gallery-cell-2">2</div>
 				<div class="gallery-cell gallery-cell-3">3</div>
@@ -163,6 +156,8 @@ Googlemaps API key: AIzaSyClW6h6xMardy7pDYZaJ5QV9_12XvGzYxc
 
 	<!-- jQuery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<!-- flickity -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/flickity/1.1.0/flickity.pkgd.min.js"></script>
 	<!-- custom scripts -->
 	<script src="js/scripts.js"></script>
 	<!-- flickity.js -->
