@@ -7,26 +7,13 @@ app.jamesAPI = 'MDo1ZmMzNGQ0Yy0zYWVmLTExZTUtODFkYi02YmQ0ZWM1NzJlOTQ6RDNTeEVIS1M4
 // james' mapbox api key
 app.jamesMapbox = 'pk.eyJ1Ijoiamltc2F1cnVzIiwiYSI6IjM0NmIzMjllNGQzYzBlODY4NTQwMjlkMTA4YmM1OWIzIn0.GzyjWKJ4nnZarMZpjPCanQ';
 // user input variable
-app.userInput = '';
+app.postal = 'N1L1L6';
+// booze type
+app.boozeType = 'beer';
 
-// =============================================================================
-// PRODUCTS FUNCTION : returns the products on promotion
-// =============================================================================
-app.products = function(){
-	$.ajax({
-		url: 'http://lcboapi.com/products',
-		type: 'GET',
-		dataType: 'jsonp',
-		data: {
-			access_key: app.jamesAPI,
-			per_page: 100,
-			where: 'has_bonus_reward_miles',
-			where_not: 'is_dead'
-		}
-	}).then(function(data) {
-		console.log(data.result);
-	});//end results function
-}; //end TEST function
+app.store2 = 499;
+
+
 
 // =============================================================================
 // STORES FUNCTION : returns stores closest to the user input
@@ -39,16 +26,107 @@ app.stores = function(){
 		data: {
 			access_key: app.jamesAPI,
 			per_page: 5,
-			geo: app.userInput
-			//lat: 43.647777,
-			//lon:-79.369978
+			geo: app.postal
 		}
 	}).then(function(data) {
-
-		console.log(data.result);
-		
+		//console.log('These are the 5 stores closest to the USER');
+		//console.log(data.result);
+		//console.log(data.result[0].id);
+		app.store1 = data.result[0];
+		//console.log(app.store1);
+		app.promoBeers(app.store1);
 	}); //end results function
+	
 } // end stores function
+
+
+// =============================================================================
+// PRODUCTS FUNCTION : returns the products on promotion
+// =============================================================================
+app.promoBeers = function(store){
+	$.ajax({
+		url: 'http://lcboapi.com/products',
+		type: 'GET',
+		dataType: 'jsonp',
+		data: {
+			access_key: app.jamesAPI,
+			per_page: 5,
+			where: 'has_bonus_reward_miles',
+			where_not: 'is_dead',
+			order: 'bonus_reward_miles',
+			q: 'beer'
+		}
+	}).then(function(data) {
+		//console.log('Beers on promotion!!');
+		//console.log the 5 beers found
+		//console.log(data.result);
+		app.beers = data.result;
+		//app.promoBeer_1 = data.result[0];
+		//app.promoBeer_2 = data.result[1];
+		//app.promoBeer_3 = data.result[2];
+		//app.promoBeer_4 = data.result[3];
+		//app.promoBeer_5 = data.result[4];
+		app.inStock(app.beers, store);
+	});//end results function
+	
+}; //end TEST function
+
+
+// =============================================================================
+// INVENTORY FUNCTION : returns store inventory
+// =============================================================================
+app.inStock = function(items, store){
+	console.log('inStock fired');
+	console.log(items);
+	console.log(store);
+	$.each(items, function(index, value){
+		$.ajax({
+			url: 'http://lcboapi.com/stores/' + store.id + '/products/' + items[index].id + '/inventory',
+			type: 'GET',
+			dataType: 'jsonp',
+			data: {
+				access_key: app.jamesAPI,
+			}
+		}).then(function(data) {
+			console.log('This is the inventory of ' + items[index].name + ' at ' + store.address_line_1 + ", " + store.city );
+			//console.log(data);
+			if( data.result.quantity > 0 ){
+				console.log(data.result.quantity);
+			}else{
+				console.log('Sorry not in stock!');
+			}
+			
+		}); //end results function
+	});
+
+}//instock function
+
+//example: lcboapi.com/stores/634/products/388900/inventory
+// app.inventories = function(){
+// 	$.ajax({
+// 		url: 'http://lcboapi.com/inventories',
+// 		type: 'GET',
+// 		dataType: 'jsonp',
+// 		data: {
+// 			access_key: app.jamesAPI,
+// 			per_page: 100,
+// 			store_id: 634,
+// 			product_id: 388900
+// 		}
+// 	}).then(function(data) {
+// 		console.log('This is the inventory');
+// 		console.log(data.result);
+		
+// 	}); //end results function
+// } // end stores function
+
+//API CALL PSEUDO CODE
+
+// user enters postal code
+
+
+
+
 
 //1. We want the user to enter their postal code.
 
@@ -76,8 +154,8 @@ app.stores = function(){
 // INIT FUNCTION
 // =============================================================================
 app.init = function(){
-	app.products();
 	app.stores();
+	//app.inventories();
 }; // end init function
 
 // =============================================================================
@@ -87,3 +165,8 @@ $(function(){
 	console.log('document ready!');
 	app.init();
 }); // end document ready
+
+
+
+
+
