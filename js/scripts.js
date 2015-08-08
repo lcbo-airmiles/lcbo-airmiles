@@ -37,24 +37,107 @@ app.stores = function(location){
 		$('.address1').text(data.result[0].address_line_1);
 		$('.cityPostal1').text(data.result[0].city + ', ' + data.result[0].postal_code);
 		$('.phoneNubmber1').text(data.result[0].telephone);
-		$('.openHours1').text('11am - 9pm');
+		//store hours
+		var store1Hours = dayWeek(data.result[0]);
+		var store1Open = msmTo12time(store1Hours[0]);
+		var store1Close = msmTo12time(store1Hours[1]);
+		$('.openHours1').text('Open ' + store1Open[0] + ':' + store1Open[1] + store1Open[2] + " to " + store1Close[0] + ':' + store1Close[1] + store1Close[2] + ' today');
+
 		//STORE 2
 		$('.address2').text(data.result[1].address_line_1);
 		$('.cityPostal2').text(data.result[1].city + ', ' + data.result[1].postal_code);
 		$('.phoneNubmber2').text(data.result[1].telephone);
-		$('.openHours2').text('11am - 9pm');
+		//store hours
+		var store2Hours = dayWeek(data.result[1]);
+		var store2Open = msmTo12time(store2Hours[0]);
+		var store2Close = msmTo12time(store2Hours[1]);
+		$('.openHours2').text('Open ' + store2Open[0] + ':' + store2Open[1] + store2Open[2] + " to " + store2Close[0] + ':' + store2Close[1] + store2Close[2] + ' today');
+
 
 		//STORE 3
 		$('.address3').text(data.result[2].address_line_1);
 		$('.cityPostal3').text(data.result[2].city + ', ' + data.result[2].postal_code);
 		$('.phoneNubmber3').text(data.result[2].telephone);
-		$('.openHours3').text('11am - 9pm');
+		//store hours
+		var store3Hours = dayWeek(data.result[2]);
+		var store3Open = msmTo12time(store3Hours[0]);
+		var store3Close = msmTo12time(store3Hours[1]);
+		$('.openHours3').text('Open ' + store3Open[0] + ':' + store3Open[1] + store3Open[2] + " to " + store3Close[0] + ':' + store3Close[1] + store3Close[2] + ' today');
+
+		//practice
+		
 
 		//pass the closest store into a function to find beers on promo
 		app.promoBeers(app.store1);
 	}); //end results function
 	
 } // end stores function
+
+// =============================================================================
+// OPENING HOURS FUNCTION
+// =============================================================================
+//the api returns time in minutes since midnight...therfore we must convert them to 12hr time
+function dayWeek(store){
+	var start = new Date();
+	var today = start.getDay();
+	console.log(today);
+
+	//get the day of the week and display the result
+	switch (today){
+		case 0:
+			console.log('sunday');
+			return [store.sunday_open, store.sunday_close];
+			break;
+		case 1:
+			console.log('monday');
+			return [store.monday_open, store.monday_close];
+			break;
+		case 2:
+			console.log('tuesday');
+			return [store.tuesday_open, store.tuesday_close];
+			break;
+		case 3:
+			console.log('wednesday');
+			return [store.wednesday_open, store.wednesday_close];
+			break;
+		case 4:
+			console.log('thursday');
+			return [store.thursday_open, store.thursday_close];
+			break;
+		case 5:
+			console.log('friday');
+			return [store.friday_open, store.friday_close];
+			break;
+		case 6:
+			console.log('saturday');
+			return [store.saturday_open, store.saturday_close];
+			break;
+		
+
+	}//end of switch statement
+}; //end dayweek function
+
+function msmTo24time(msm) {
+  var hour = msm / 60;
+  var mins = msm % 60;
+  //returns an array of hours and minutes
+  return [hour, mins];
+}
+function msmTo12time(msm) {
+	var time = msmTo24time(msm);
+	var h24  = time[0];
+	var h12  = (0 == h24 ? 12 : (h24 > 12 ? (h24 - 10) - 2 : h24));
+	h12 = Math.floor(h12);
+	var ampm = (h24 >= 12 ? 'PM' : 'AM');
+	//if minutes is 0 make it 00
+	if (time[1] === 0){
+		var mins = '00';
+	}else{
+		mins = time[1];
+	}
+	// returns hours, minutes and am or pm in an array
+	return [h12, mins, ampm];
+};// end opening hours function
 
 
 
