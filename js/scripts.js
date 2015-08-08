@@ -77,14 +77,17 @@ app.stores = function(location){
 // OPENING HOURS FUNCTION
 // =============================================================================
 //the api returns time in minutes since midnight...therfore we must convert them to 12hr time
+//we pass in the store object so we can see the times they open and close each day
 function dayWeek(store){
 	var start = new Date();
 	var today = start.getDay();
 	console.log(today);
-
+	//javascript has a built in function to tell you the day of the week 0-6 is sun-sat
 	//get the day of the week and display the result
+	//this is a switch statement....it's like an if/else statement but cleaner looking when you have so many cases!
 	switch (today){
 		case 0:
+			//so in this case dayweek() will return the open and close times for the passed in store as an array
 			console.log('sunday');
 			return [store.sunday_open, store.sunday_close];
 			break;
@@ -112,17 +115,17 @@ function dayWeek(store){
 			console.log('saturday');
 			return [store.saturday_open, store.saturday_close];
 			break;
-		
-
 	}//end of switch statement
 }; //end dayweek function
 
+//this function takes the minutes since midnight and creates a time based on a 24 hour clock
 function msmTo24time(msm) {
   var hour = msm / 60;
   var mins = msm % 60;
   //returns an array of hours and minutes
   return [hour, mins];
 }
+//this function takes the minutes since midnight and returns a 12 hour clock in an array of [HOURS, MINUTES, AM/PM]
 function msmTo12time(msm) {
 	var time = msmTo24time(msm);
 	var h24  = time[0];
@@ -231,44 +234,18 @@ app.inStock = function(items, store){
 
 }//instock function
 
-//example: lcboapi.com/stores/634/products/388900/inventory
-// app.inventories = function(){
-// 	$.ajax({
-// 		url: 'http://lcboapi.com/inventories',
-// 		type: 'GET',
-// 		dataType: 'jsonp',
-// 		data: {
-// 			access_key: app.jamesAPI,
-// 			per_page: 100,
-// 			store_id: 634,
-// 			product_id: 388900
-// 		}
-// 	}).then(function(data) {
-// 		console.log('This is the inventory');
-// 		console.log(data.result);
-		
-// 	}); //end results function
-// } // end stores function
-
-
 //2. (as another option)We want the user to enable "geo location" to receive their location via 
 //GoogleMaps / Map Box, by clicking a button.
 
 
 //3. We want to 'smooth scroll' their results (whichever method they selected) further down the page.
 
-
-//3. We want to 'smooth scroll' their results (whichever method they selected) further down the page. 
-
 //4. We want to return 3 LCBO locations within their postal code parameters.
-
 
 //5. We want to return a map displaying their LCBO locations using markers.
 
 //use jquery to hide the div - > SHOW the hidden div BEFORE the map is revealed, make
 //the map slide in after we have shown the div. make the div first AND THEN put the map on the page.
-
-
 
 //6. Once a store has been selected by the user, we will 'smooth scroll' to display the airmiles promotions, further down the page.
 
@@ -283,7 +260,7 @@ app.inStock = function(items, store){
 // LOCATION LISTENER FUNCTION
 // =============================================================================
 app.locationListener = function(){
-	// when the postal code is submitted
+	// when the location form is submitted it starts the chain of functions!
 	$( "#location" ).submit(function( event ) {
 		//stop default action
 		event.preventDefault();
