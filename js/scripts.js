@@ -8,7 +8,7 @@ app.jamesAPI = 'MDo1ZmMzNGQ0Yy0zYWVmLTExZTUtODFkYi02YmQ0ZWM1NzJlOTQ6RDNTeEVIS1M4
 // james' mapbox api key
 app.jamesMapbox = 'pk.eyJ1Ijoiamltc2F1cnVzIiwiYSI6IjM0NmIzMjllNGQzYzBlODY4NTQwMjlkMTA4YmM1OWIzIn0.GzyjWKJ4nnZarMZpjPCanQ';
 // booze type
-app.boozeType = 'beer';
+app.boozeType = 'spirits';
 
 
 // =============================================================================
@@ -31,6 +31,8 @@ app.stores = function(location){
 		console.log('These are the 5 stores closest to the USER');
 		//just grab the first location to start
 		app.store1 = data.result[0];
+		app.store2 = data.result[1];
+		app.store3 = data.result[2];
 
 		//	POPULATE THE ADDRESS INFO ====================
 		//STORE 1
@@ -63,15 +65,42 @@ app.stores = function(location){
 		var store3Open = msmTo12time(store3Hours[0]);
 		var store3Close = msmTo12time(store3Hours[1]);
 		$('.openHours3').text('Open ' + store3Open[0] + ':' + store3Open[1] + store3Open[2] + " to " + store3Close[0] + ':' + store3Close[1] + store3Close[2] + ' today');
-
-		//practice
 		
-
-		//pass the closest store into a function to find beers on promo
-		app.promoBeers(app.store1);
+		//run a function that determines which location is pressed then displays the booze
+		app.storeSelector();
+		
+		
 	}); //end results function
 	
 } // end stores function
+// =============================================================================
+// STORE SELECTOR FUNCTION
+// =============================================================================
+app.storeSelector = function(){
+	$('.store1').on('click', function(){
+		//remove old flickity cells
+		app.promoBooze(app.store1, 'beer');
+		app.promoBooze(app.store1, 'wine');
+		app.promoBooze(app.store1, 'spirits');
+	});
+	$('.store2').on('click', function(){
+		//remove old flickity cells
+		app.promoBooze(app.store2, 'beer');
+		app.promoBooze(app.store2, 'wine');
+		app.promoBooze(app.store2, 'spirits');
+	});
+	$('.store3').on('click', function(){
+		//remove old flickity cells
+		app.promoBooze(app.store3, 'beer');
+		app.promoBooze(app.store3, 'wine');
+		app.promoBooze(app.store3, 'spirits');
+	});
+
+}
+
+
+
+
 
 // =============================================================================
 // OPENING HOURS FUNCTION
@@ -149,7 +178,7 @@ function msmTo12time(msm) {
 // =============================================================================
 
 //this function is passed a store and finds the 5 beers with the most airmiles reward miles
-app.promoBeers = function(store){
+app.promoBooze = function(store, booze){
 
 	$.ajax({
 		url: 'http://lcboapi.com/products',
@@ -161,20 +190,20 @@ app.promoBeers = function(store){
 			where: 'has_bonus_reward_miles',
 			where_not: 'is_dead',
 			order: 'bonus_reward_miles',
-			q: app.boozeType
+			q: booze
 		}
 	}).then(function(data) {
 		//console.log('Beers on promotion!!');
 		//console.log the 5 beers found
 		//console.log(data.result);
-		app.beers = data.result;
+		var boozeItems = data.result;
 		//app.promoBeer_1 = data.result[0];
 		//app.promoBeer_2 = data.result[1];
 		//app.promoBeer_3 = data.result[2];
 		//app.promoBeer_4 = data.result[3];
 		//app.promoBeer_5 = data.result[4];
 		//pass the resulting array of beer objects into a function to check the stock and pass in the store from before
-		app.inStock(app.beers, store);
+		app.inStock(boozeItems, store);
 	});//end results function
 	
 }; //end TEST function
@@ -187,6 +216,11 @@ app.inStock = function(items, store){
 	console.log('inStock fired');
 	console.log(items);
 	console.log(store);
+	//default flickity stuff to get it working
+	var $gallery = $('.gallery').flickity().flickity( 'select', 2 );
+	//remove old gallery-cells before adding new ones!
+	$gallery.flickity('remove', $('.gallery-cell'));
+
 	//for each product on promotion we check the stock at the store
 	$.each(items, function(index, value){
 		$.ajax({
@@ -200,11 +234,11 @@ app.inStock = function(items, store){
 			console.log(data);
 			//now we have the stock of the items on promo at the closest store....lets display it!
 			console.log('This is the inventory of ' + items[index].name + ' at ' + store.address_line_1 + ", " + store.city );
-			// so if the quantity is greater than 0 display it!
-			if( data.result.quantity > 0 ){
+			// so if the quantity is greater than 0 and there is a picture display it!
+			if (( data.result.quantity > 0 ) && (value.image_url)){
 				console.log(data.result.quantity);
-				//construct flickity slide
 
+				//construct flickity slide
 				var itemImg = $('<img>').attr('src', value.image_url);
 				var itemName = $('<p>').text(value.name);
 				var itemMiles = $('<p>').text('Bonus reward miles: ' + value.bonus_reward_miles);
@@ -214,16 +248,15 @@ app.inStock = function(items, store){
 
 				var galleryCell = $('<div>').addClass('gallery-cell').append(itemImg, itemName, itemMiles, itemPackage, itemPrice);
 
-				//default flickity stuff to get it working
-				var $gallery = $('.gallery').flickity().flickity('next').flickity( 'select', 2 );
-
+				//append the new gallery-cells into the gallery
+				
 				$gallery.flickity('append', galleryCell);
 
 				// ===================================================================
 				//scroll page down to see results =====================================
-			    $('html, body').animate({
-			        scrollTop: $('.stores').offset().top
-			    }, 1000);
+			    // $('html, body').animate({
+			    //     scrollTop: $('.stores').offset().top
+			    // }, 1000);
 				
 			}else if ( ( data.result.quantity <= 0 ) || (!data.result) ){
 				console.log('Sorry not in stock!');
