@@ -65,7 +65,7 @@ USER INPUT SECTION
 			</div>
 			<form id="location">
 				<input type="text" class="user-input" placeholder="Enter your Postal Code">
-				<button class="submit">Submit</button>
+				<a href="#locations"><button class="submit">Submit</button></a>
 				<h2> or </h2>
 				<button>Use Your Location</button>
 			</form><!-- inputArea -->
@@ -73,7 +73,7 @@ USER INPUT SECTION
 <!-- ==============================================================
 LOCATIONS
 =====================================================================-->
-		<section class="locations hidden">
+		<section id="locations" class="locations hidden">
 			<div class="stores"> 
 				<div class="storesTop">
 					<h3>Stores Closest to You</h3>
@@ -124,7 +124,7 @@ LOCATIONS
 <!-- ==============================================================
 PROMOTIONS
 =====================================================================-->
-		<section class="promotions hidden">
+		<section id="promotions" class="promotions hidden">
 			<div class="promotionsTitle">	
 				<h3>Air Miles Promotions for<span class="store-location"><!-- store location --></span></h3>
 			</div><!-- promotionsTitle -->
@@ -156,6 +156,8 @@ FOOTER
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<!-- flickity -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/flickity/1.1.0/flickity.pkgd.min.js"></script>
+	<!-- smooth scroll -->
+	<script src="js/smooth-scroll.js"></script>
 	<!-- custom scripts -->
 	<script src="js/scripts.js"></script>
 </body>
