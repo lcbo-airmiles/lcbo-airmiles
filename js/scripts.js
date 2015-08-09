@@ -79,7 +79,7 @@ app.stores = function(location){
 		//STORE 1
 		$('.address1').text(data.result[0].address_line_1);
 		$('.cityPostal1').text(data.result[0].city + ', ' + data.result[0].postal_code);
-		$('.phoneNubmber1').text(data.result[0].telephone);
+		$('.phoneNumber1').text(data.result[0].telephone);
 		//store hours
 		var store1Hours = dayWeek(data.result[0]);
 		var store1Open = msmTo12time(store1Hours[0]);
@@ -89,7 +89,7 @@ app.stores = function(location){
 		//STORE 2
 		$('.address2').text(data.result[1].address_line_1);
 		$('.cityPostal2').text(data.result[1].city + ', ' + data.result[1].postal_code);
-		$('.phoneNubmber2').text(data.result[1].telephone);
+		$('.phoneNumber2').text(data.result[1].telephone);
 		//store hours
 		var store2Hours = dayWeek(data.result[1]);
 		var store2Open = msmTo12time(store2Hours[0]);
@@ -100,7 +100,7 @@ app.stores = function(location){
 		//STORE 3
 		$('.address3').text(data.result[2].address_line_1);
 		$('.cityPostal3').text(data.result[2].city + ', ' + data.result[2].postal_code);
-		$('.phoneNubmber3').text(data.result[2].telephone);
+		$('.phoneNumber3').text(data.result[2].telephone);
 		//store hours
 		var store3Hours = dayWeek(data.result[2]);
 		var store3Open = msmTo12time(store3Hours[0]);
@@ -311,34 +311,32 @@ app.inStock = function(items, store){
 
 }//instock function
  L.mapbox.accessToken = 'pk.eyJ1Ijoiamltc2F1cnVzIiwiYSI6IjM0NmIzMjllNGQzYzBlODY4NTQwMjlkMTA4YmM1OWIzIn0.GzyjWKJ4nnZarMZpjPCanQ';
-	var mapLeaflet  = L.mapbox.map('map','mapbox.light')
+	var mapLeaflet  = L.mapbox.map('map','mapbox.streets')
 	.setView ([43.67023, -79.38676], 14)
 
 	app.mapMarker = function(){
-		console.log('hullo');
+		console.log('Find Three Locations!');
 
 
+//Places a Mapbox marker on the three locations via latitude and longitude. 
 	L.marker([app.store1lat, app.store1lon]).addTo(mapLeaflet);
 	L.marker([app.store2lat, app.store2lon]).addTo(mapLeaflet);
 	L.marker([app.store3lat, app.store3lon]).addTo(mapLeaflet);
 
 mapLeaflet.scrollWheelZoom.disable();
-	// L.marker([app.store2lat, app.store2lon]).addTo(mapLeaflet);
-	// L.marker([app.store3lat, app.store3lon]).addTo(mapLeaflet);
 };
+
+
 
 
 
 
 //2. (as another option)We want the user to enable "geo location" to receive their location via 
 //GoogleMaps / Map Box, by clicking a button.
-
-
 //3. We want to 'smooth scroll' their results (whichever method they selected) further down the page.
 
 //4. We want to return 3 LCBO locations within their postal code parameters.
 
-//5. We want to return a map displaying their LCBO locations using markers.
 
 //use jquery to hide the div - > SHOW the hidden div BEFORE the map is revealed, make
 //the map slide in after we have shown the div. make the div first AND THEN put the map on the page.
@@ -385,7 +383,7 @@ app.init = function(){
 	var alexkey = 'pk.eyJ1IjoiYWxleGFuZHJhZGF2ZXkiLCJhIjoiNWI5NWYzY2Q0NTQyYjYyMmFjNWY5ZWEwZGE5MjAxZWMifQ.yQUY4RtfbkaeoUlcbsxy8g';
 	L.mapbox.accessToken = alexkey;
 
-	app.map = L.mapbox.map('map',alexID).setView([44.129, -79.306], 8);
+	app.map = L.mapbox.map('map',alexID);
 
 }; // end init function
 
