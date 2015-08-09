@@ -220,7 +220,10 @@ app.inStock = function(items, store){
 	var $gallery = $('.gallery').flickity().flickity( 'select', 2 );
 	//remove old gallery-cells before adding new ones!
 	$gallery.flickity('remove', $('.gallery-cell'));
-
+	//scroll page down to see results =====================================
+    $('html, body').animate({
+        scrollTop: $('#promotions').offset().top
+    }, 1000);
 	//for each product on promotion we check the stock at the store
 	$.each(items, function(index, value){
 		$.ajax({
@@ -302,7 +305,13 @@ app.locationListener = function(){
 		//just for test purposes so you don't have to keep putting in a place uncomment hamilton 
 		//app.postal = 'hamilton';
 		app.stores(app.postal);
+		//scroll page down to see results =====================================
+	    $('html, body').animate({
+	        scrollTop: $('#locations').offset().top
+	    }, 1000);
 	});
+	//smooth scroll
+
 }
 
 // =============================================================================
@@ -316,7 +325,7 @@ app.init = function(){
 	var alexkey = 'pk.eyJ1IjoiYWxleGFuZHJhZGF2ZXkiLCJhIjoiNWI5NWYzY2Q0NTQyYjYyMmFjNWY5ZWEwZGE5MjAxZWMifQ.yQUY4RtfbkaeoUlcbsxy8g';
 	L.mapbox.accessToken = alexkey;
 	app.map = L.mapbox.map('map',alexID).setView([44.129, -79.306], 8);
-
+	
 }; // end init function
 
 // =============================================================================
