@@ -41,7 +41,7 @@ START OF BODY
 =====================================================================-->
 
 
-	<div class="wrapper">
+	<div class="wrapper clearfix">
 		<header class="grapes">
 			<img src="images/LCBO-logo.svg" alt="LCBO 2015 logo">
 		</header>
@@ -54,7 +54,7 @@ START OF BODY
 <!-- ==============================================================
 USER INPUT SECTION
 =====================================================================-->
-		<section class="airMiles">
+		<section class="airMiles clearfix">
 			<div class="airMilesTop clearfix">
 				<div class="airMilesLogo">
 					<img src="images/airMilesCloud.png" alt="The Air Miles Logo set on a white cloud">
@@ -73,13 +73,15 @@ USER INPUT SECTION
 <!-- ==============================================================
 LOCATIONS
 =====================================================================-->
-		<section class="locations hidden">
+		<section class="blackBar"></section><!-- the black bar under the header -->
+
+		<section class="locations hidden clearfix">
 			<div class="stores"> 
-				<div class="storesTop">
+				<div class="storesTop clearfix">
 					<h3>Stores Closest to You</h3>
 					<h4>Select a store to view available <span class="block"></span>Air Miles promotions</h4>
 				</div><!-- /.storesTop -->
-				<div class="storesBottom">
+				<div class="storesBottom clearfix">
 					<div class="store store1 clearfix">
 						<div class="storeLeft store1Left">
 							<i class="fa fa-map-marker"></i>
@@ -121,10 +123,12 @@ LOCATIONS
 			<div class="map" id="map">
 			</div><!-- map -->
 		</section><!-- locations -->
+
+		<section class="blackBar"></section><!-- the black bar under the header -->
 <!-- ==============================================================
 PROMOTIONS
 =====================================================================-->
-		<section class="promotions hidden">
+		<section class="promotions hidden clearfix">
 			<div class="promotionsTitle">	
 				<h3>Air Miles Promotions for<span class="store-location"><!-- store location --></span></h3>
 			</div><!-- promotionsTitle -->

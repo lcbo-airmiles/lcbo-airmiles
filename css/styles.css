@@ -189,7 +189,7 @@ h1 {
 
 body {
   font-family: 'Josefin Sans', sans-serif;
-  background: #1893cc;
+  background: #f7f6ed;
   font-size: 10px;
 }
 
@@ -257,11 +257,10 @@ header {
   font-size: 2em;
 }
 
-.airMiles .inputArea {
+.airMiles #location {
   clear: both;
   display: block;
   padding: 70px 0 70px 0;
-  margin-bottom: 70px;
 }
 
 .airMiles input[type=text],
@@ -331,14 +330,13 @@ header {
 
 .locations {
   width: 100%;
-  height: 500px;
 }
 
 .stores {
   width: 30%;
   height: 100%;
   float: left;
-  background: pink;
+  background: #f7f6ed;
 }
 
 .storesTop {
@@ -355,10 +353,6 @@ header {
 .storesTop h4 {
   font-size: 1.5em;
   padding-bottom: 20px;
-}
-
-.storesBottom {
-  background: #f7f6ed;
 }
 
 .storesBottom .store {
@@ -385,16 +379,9 @@ header {
   width: 70%;
   height: 100%;
   float: left;
-  background: orange;
-}
-
-.promotions {
-  height: 600px;
-  background: lavender;
 }
 
 .promotionsTitle {
-  background: hotpink;
   color: #f7f6ed;
   font-size: 2.5em;
   text-align: center;
@@ -413,13 +400,12 @@ header {
 
 .stores {
   width: 40%;
+  height: 100%;
   float: left;
-  border: 1px solid green;
 }
 
 .map {
   width: 60%;
-  border: 1px solid blue;
 }
 
 .gallery {
@@ -449,7 +435,7 @@ header {
 
 .promotionsEnding {
   width: 100%;
-  background: gold;
+  padding-bottom: 50px;
   display: flex;
   align-items: center;
 }
@@ -457,7 +443,6 @@ header {
 .promotionsEnding .promotionsEndingLeft {
   width: 50%;
   float: left;
-  background: blue;
 }
 
 .promotionsEnding .promotionsEndingRight {
