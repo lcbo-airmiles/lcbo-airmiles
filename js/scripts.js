@@ -30,9 +30,50 @@ app.stores = function(location){
 	}).then(function(data) {
 		console.log('These are the 5 stores closest to the USER');
 		//just grab the first location to start
+		console.log(data);
 		app.store1 = data.result[0];
 		app.store2 = data.result[1];
 		app.store3 = data.result[2];
+
+		//map marker app,mapPins(.app.store.1)
+
+		//call function, pass in 3 store objects, then define that functions somewhere else ex Line 295
+		//geocode it (lat and lon) 
+		
+		// app.store1, address_line_1
+		// app.store2, address_line_2
+		// app.store3, address_line_3
+
+		app.store1lat = data.result[0].latitude;
+		console.log(app.store1lat);
+		app.store2lat = data.result[1].latitude;
+		console.log(app.store2lat);
+		app.store3lat = data.result[2].latitude;
+		console.log(app.store3lat);
+		// app.store2lat
+		// app.store3lat
+
+		app.store1lon = data.result[0].longitude;
+		console.log(app.store1lon);
+		app.store2lon = data.result[1].longitude;
+		console.log(app.store2lon);
+		app.store3lon = data.result[2].longitude;
+		console.log(app.store3lon);
+		// app.store2lon
+		// app.store3lon
+
+
+	
+		app.mapMarker ();
+
+
+
+
+	// clickable: false;
+
+	// set scroll "no"
+		
+
 
 		//	POPULATE THE ADDRESS INFO ====================
 		//STORE 1
@@ -269,6 +310,25 @@ app.inStock = function(items, store){
 	});
 
 }//instock function
+ L.mapbox.accessToken = 'pk.eyJ1Ijoiamltc2F1cnVzIiwiYSI6IjM0NmIzMjllNGQzYzBlODY4NTQwMjlkMTA4YmM1OWIzIn0.GzyjWKJ4nnZarMZpjPCanQ';
+	var mapLeaflet  = L.mapbox.map('map','mapbox.light')
+	.setView ([43.67023, -79.38676], 14)
+
+	app.mapMarker = function(){
+		console.log('hullo');
+
+
+	L.marker([app.store1lat, app.store1lon]).addTo(mapLeaflet);
+	L.marker([app.store2lat, app.store2lon]).addTo(mapLeaflet);
+	L.marker([app.store3lat, app.store3lon]).addTo(mapLeaflet);
+
+mapLeaflet.scrollWheelZoom.disable();
+	// L.marker([app.store2lat, app.store2lon]).addTo(mapLeaflet);
+	// L.marker([app.store3lat, app.store3lon]).addTo(mapLeaflet);
+};
+
+
+
 
 //2. (as another option)We want the user to enable "geo location" to receive their location via 
 //GoogleMaps / Map Box, by clicking a button.
@@ -324,8 +384,9 @@ app.init = function(){
 	var alexMap = 'https://a.tiles.mapbox.com/v4/alexandradavey.n42d3egc/page.html?access_token=pk.eyJ1IjoiYWxleGFuZHJhZGF2ZXkiLCJhIjoiNWI5NWYzY2Q0NTQyYjYyMmFjNWY5ZWEwZGE5MjAxZWMifQ.yQUY4RtfbkaeoUlcbsxy8g#4/45.89/-75.63';
 	var alexkey = 'pk.eyJ1IjoiYWxleGFuZHJhZGF2ZXkiLCJhIjoiNWI5NWYzY2Q0NTQyYjYyMmFjNWY5ZWEwZGE5MjAxZWMifQ.yQUY4RtfbkaeoUlcbsxy8g';
 	L.mapbox.accessToken = alexkey;
+
 	app.map = L.mapbox.map('map',alexID).setView([44.129, -79.306], 8);
-	
+
 }; // end init function
 
 // =============================================================================
