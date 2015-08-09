@@ -9,7 +9,7 @@
 	 -->
 	<meta charset="UTF-8">
 	<title>LCBO Airmiles Promotion</title>
-	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1,user-scalable=no'">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1,user-scalable=no">
 	<!--for the MapBox -->
 	<script src='https://api.mapbox.com/mapbox.js/v2.2.1/mapbox.js'></script>
 	<link href='https://api.mapbox.com/mapbox.js/v2.2.1/mapbox.css' rel='stylesheet' />
@@ -28,16 +28,18 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flickity/1.1.0/flickity.min.css">
 	<!-- custom styles -->
 	<link rel="stylesheet" href="css/styles.css">
-	<!-- flickity.css -->
-	<link rel="stylesheet" href="css/flickity.css" media="screen">
-	    <style type="text/css">
-      html, body, #map-canvas { height: 500px; margin: 0; padding: 0;}
+	<style type="text/css">
+        html, body, #map-canvas { height: 500px; margin: 0; padding: 0;}
     </style>
     <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClW6h6xMardy7pDYZaJ5QV9_12XvGzYxc">
     </script>
 </head>
 <body>
+<!-- ==============================================================
+START OF BODY 
+=====================================================================-->
+
 
 	<div class="wrapper">
 		<header class="grapes">
@@ -49,7 +51,9 @@
 
 
 		<section class="blackBar"></section><!-- the black bar under the header -->
-
+<!-- ==============================================================
+USER INPUT SECTION
+=====================================================================-->
 		<section class="airMiles">
 			<div class="airMilesTop clearfix">
 				<div class="airMilesLogo">
@@ -59,14 +63,16 @@
 					<h1>Discover this week's Air Miles Promotions closest to you!</h1>
 				</div><!-- airMilesTitle -->
 			</div>
-			<div class="inputArea">
-				<input type="text" id="inputPostal" placeholder="Enter your Postal Code">
+			<form id="location">
+				<input type="text" class="user-input" placeholder="Enter your Postal Code">
 				<button class="submit">Submit</button>
 				<h2> or </h2>
 				<button>Use Your Location</button>
-			</div><!-- inputArea -->
+			</form><!-- inputArea -->
 		</section><!-- airMiles -->
-
+<!-- ==============================================================
+LOCATIONS
+=====================================================================-->
 		<section class="locations hidden">
 			<div class="stores"> 
 				<div class="storesTop">
@@ -92,7 +98,7 @@
 						</div> <!-- /.storeLeft -->
 						<div class="storeRight store2Right">
 							<p class="address2">Store Street Address</p>
-							<p class="city-postal2">City and Postal Code</p>
+							<p class="cityPostal2">City and Postal Code</p>
 							<p class="phoneNubmber2">Phone Number</p>
 							<p class="openHours2">Opening Hours Today</p>
 						</div> <!-- /.storeRight -->
@@ -104,7 +110,7 @@
 						</div> <!-- /.storeLeft -->
 						<div class="storeRight store3Right">
 							<p class="address3">Store Street Address</p>
-							<p class="city-postal3">City and Postal Code</p>
+							<p class="cityPostal3">City and Postal Code</p>
 							<p class="phoneNubmber3">Phone Number</p>
 							<p class="openHours3">Opening Hours Today</p>
 						</div> <!-- /.storeRight -->
@@ -115,25 +121,20 @@
 			<div class="map" id="map">
 			</div><!-- map -->
 		</section><!-- locations -->
-
+<!-- ==============================================================
+PROMOTIONS
+=====================================================================-->
 		<section class="promotions hidden">
 			<div class="promotionsTitle">	
 				<h3>Air Miles Promotions for<span class="store-location"><!-- store location --></span></h3>
 			</div><!-- promotionsTitle -->
 			
-			<div class="gallery js-flickity"> <!-- aka flickity -->	
-				<div class="gallery-cell gallery-cell-1">1</div>
-				<div class="gallery-cell gallery-cell-2">2</div>
-				<div class="gallery-cell gallery-cell-3">3</div>
-				<div class="gallery-cell gallery-cell-4">4</div>
-				<div class="gallery-cell gallery-cell-5">5</div>
-				<div class="gallery-cell gallery-cell-6">6</div>
-				<div class="gallery-cell gallery-cell-7">7</div>
-				<div class="gallery-cell gallery-cell-8">8</div>
+			<div class="gallery js-flickity" data-flickity-options='{ "wrapAround": true }'> <!-- aka flickity -->	
+				<!-- items filled in by js -->
 			</div><!-- gallery aka flickity-->
 			<div class="promotionsEnding clearfix">
 				<div class="promotionsEndingLeft">
-					<img src="luggage_icon.png" class="animated slideInLeft" alt="an vector icon of a suitcase covered in stickers">
+					<img src="images/luggage.svg" class="animated slideInLeft" alt="an vector icon of a suitcase covered in stickers">
 				</div> <!-- /.promotionsEndingLeft -->
 				<div class="promotionsEndingRight">
 					<h2 class="animated slideInRight">Collecting points for travel has never been so easy!</h2>
@@ -141,29 +142,21 @@
 			</div><!-- promotionsEnding -->
 		</section><!-- promotions -->
 	</div><!-- /.wrapper -->
-
+<!-- ==============================================================
+FOOTER
+=====================================================================-->
 	<footer>
 		<p>&copy 2015 Alex Davey, James McDermid, and Anya Craig</p>
 	</footer>
 
-	
-	
-
-
 	<!-- =============================================================
 	SCRIPTS
 	================================================================ -->
-
 	<!-- jQuery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<!-- flickity -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/flickity/1.1.0/flickity.pkgd.min.js"></script>
 	<!-- custom scripts -->
 	<script src="js/scripts.js"></script>
-	<!-- flickity.js -->
-	<script src="js/flickity.pkgd.min.js"></script>
-	<!-- flickity test -->
-
-
 </body>
 </html>

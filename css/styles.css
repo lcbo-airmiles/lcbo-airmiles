@@ -423,16 +423,27 @@ header {
 
 .gallery {
   background: #f7f6ed;
-  max-width: 900px;
   margin: 0 auto 50px auto;
+  height: 500px;
 }
 
 .gallery .gallery-cell {
-  background: red;
-  width: 30%;
-  margin: 30px 1.5%;
-  height: 200px;
+  background: #f7f6ed;
+  width: 20%;
+  margin: 30px 1%;
+  height: 500px;
   margin: 0 10px;
+  position: relative;
+}
+
+.gallery .gallery-cell img {
+  width: 100%;
+  height: 70%;
+}
+
+.gallery .gallery-cell p {
+  color: #bed993;
+  font-size: 20px;
 }
 
 .promotionsEnding {
