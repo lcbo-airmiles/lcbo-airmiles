@@ -1,13 +1,4 @@
 <!DOCTYPE html>
-
-<!-- 
-LCBO Airmiles Promotion App
-Started: 2015/08/04
-Authors: Anya Craig, Alexandra Davey & James McDermid
-Googlemaps API key: AIzaSyClW6h6xMardy7pDYZaJ5QV9_12XvGzYxc
-:)
- -->
-
 <html lang="en">
 <head>
 	<!-- 
@@ -18,7 +9,7 @@ Googlemaps API key: AIzaSyClW6h6xMardy7pDYZaJ5QV9_12XvGzYxc
 	 -->
 	<meta charset="UTF-8">
 	<title>LCBO Airmiles Promotion</title>
-	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1,user-scalable=no'">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1,user-scalable=no">
 	<!--for the MapBox -->
 	<script src='https://api.mapbox.com/mapbox.js/v2.2.1/mapbox.js'></script>
 	<link href='https://api.mapbox.com/mapbox.js/v2.2.1/mapbox.css' rel='stylesheet' />
@@ -33,18 +24,23 @@ Googlemaps API key: AIzaSyClW6h6xMardy7pDYZaJ5QV9_12XvGzYxc
 	<link href='http://fonts.googleapis.com/css?family=Lora:700,400|Josefin+Sans:400,700,300,400italic' rel='stylesheet' type='text/css'>
 	<!-- animate.css -->
 	<link rel="stylesheet" href="css/animate.css">
+	<!-- flickity -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flickity/1.1.0/flickity.min.css">
 	<!-- custom styles -->
 	<link rel="stylesheet" href="css/styles.css">
-	<!-- flickity.css -->
-	<link rel="stylesheet" href="css/flickity.css" media="screen">
-	    <style type="text/css">
-      html, body, #map-canvas { height: 500px; margin: 0; padding: 0;}
+	<style type="text/css">
+        html, body, #map-canvas { height: 500px; margin: 0; padding: 0;}
     </style>
     <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClW6h6xMardy7pDYZaJ5QV9_12XvGzYxc">
     </script>
 </head>
 <body>
+<!-- ==============================================================
+START OF BODY 
+=====================================================================-->
+
+
 	<div class="wrapper">
 		<header class="grapes">
 			<img src="images/LCBO-logo.svg" alt="LCBO 2015 logo">
@@ -55,7 +51,9 @@ Googlemaps API key: AIzaSyClW6h6xMardy7pDYZaJ5QV9_12XvGzYxc
 
 
 		<section class="blackBar"></section><!-- the black bar under the header -->
-
+<!-- ==============================================================
+USER INPUT SECTION
+=====================================================================-->
 		<section class="airMiles">
 			<div class="airMilesTop clearfix">
 				<div class="airMilesLogo">
@@ -65,13 +63,16 @@ Googlemaps API key: AIzaSyClW6h6xMardy7pDYZaJ5QV9_12XvGzYxc
 					<h1>Discover this week's Air Miles Promotions closest to you!</h1>
 				</div><!-- airMilesTitle -->
 			</div>
-			<div class="inputArea">
-				<input type="text" placeholder="Enter your Postal Code">
+			<form id="location">
+				<input type="text" class="user-input" placeholder="Enter your Postal Code">
+				<button class="submit">Submit</button>
 				<h2> or </h2>
 				<button>Use Your Location</button>
-			</div><!-- inputArea -->
+			</form><!-- inputArea -->
 		</section><!-- airMiles -->
-
+<!-- ==============================================================
+LOCATIONS
+=====================================================================-->
 		<section class="locations hidden">
 			<div class="stores"> 
 				<div class="storesTop">
@@ -84,23 +85,22 @@ Googlemaps API key: AIzaSyClW6h6xMardy7pDYZaJ5QV9_12XvGzYxc
 							<i class="fa fa-map-marker"></i>
 						</div> <!-- /.storeLeft -->
 						<div class="storeRight store1Right">
-							<p>Store Street Address</p>
-							<p>City and Postal Code</p>
-							<p>Phone Number</p>
-							<p>Opening Hours Today</p>
+							<p class="address1">Store Street Address</p>
+							<p class="cityPostal1">City and Postal Code</p>
+							<p class="phoneNubmber1">Phone Number</p>
+							<p class="openHours1">Opening Hours Today</p>
 						</div> <!-- /.storeRight -->
 					</div> <!-- /.store1 -->
-
 
 					<div class="store store2 clearfix">
 						<div class="storeLeft store2Left">
 							<i class="fa fa-map-marker"></i>
 						</div> <!-- /.storeLeft -->
 						<div class="storeRight store2Right">
-							<p>Store Street Address</p>
-							<p>City and Postal Code</p>
-							<p>Phone Number</p>
-							<p>Opening Hours Today</p>
+							<p class="address2">Store Street Address</p>
+							<p class="cityPostal2">City and Postal Code</p>
+							<p class="phoneNubmber2">Phone Number</p>
+							<p class="openHours2">Opening Hours Today</p>
 						</div> <!-- /.storeRight -->
 					</div> <!-- /.store2 -->
 
@@ -109,10 +109,10 @@ Googlemaps API key: AIzaSyClW6h6xMardy7pDYZaJ5QV9_12XvGzYxc
 							<i class="fa fa-map-marker"></i>
 						</div> <!-- /.storeLeft -->
 						<div class="storeRight store3Right">
-							<p>Store Street Address</p>
-							<p>City and Postal Code</p>
-							<p>Phone Number</p>
-							<p>Opening Hours Today</p>
+							<p class="address3">Store Street Address</p>
+							<p class="cityPostal3">City and Postal Code</p>
+							<p class="phoneNubmber3">Phone Number</p>
+							<p class="openHours3">Opening Hours Today</p>
 						</div> <!-- /.storeRight -->
 					</div> <!-- /.store3 -->
 
@@ -121,25 +121,20 @@ Googlemaps API key: AIzaSyClW6h6xMardy7pDYZaJ5QV9_12XvGzYxc
 			<div class="map" id="map">
 			</div><!-- map -->
 		</section><!-- locations -->
-
+<!-- ==============================================================
+PROMOTIONS
+=====================================================================-->
 		<section class="promotions hidden">
 			<div class="promotionsTitle">	
 				<h3>Air Miles Promotions for<span class="store-location"><!-- store location --></span></h3>
 			</div><!-- promotionsTitle -->
 			
-			<div class="gallery"> <!-- aka flickity -->	
-				<div class="gallery-cell gallery-cell-1">1</div>
-				<div class="gallery-cell gallery-cell-2">2</div>
-				<div class="gallery-cell gallery-cell-3">3</div>
-				<div class="gallery-cell gallery-cell-4">4</div>
-				<div class="gallery-cell gallery-cell-5">5</div>
-				<div class="gallery-cell gallery-cell-6">6</div>
-				<div class="gallery-cell gallery-cell-7">7</div>
-				<div class="gallery-cell gallery-cell-8">8</div>
+			<div class="gallery js-flickity" data-flickity-options='{ "wrapAround": true }'> <!-- aka flickity -->	
+				<!-- items filled in by js -->
 			</div><!-- gallery aka flickity-->
 			<div class="promotionsEnding clearfix">
 				<div class="promotionsEndingLeft">
-					<img src="images/luggage_icon.png" class="animated slideInLeft" alt="an vector icon of a suitcase covered in stickers">
+					<img src="images/luggage.svg" class="animated slideInLeft" alt="an vector icon of a suitcase covered in stickers">
 				</div> <!-- /.promotionsEndingLeft -->
 				<div class="promotionsEndingRight">
 					<h2 class="animated slideInRight">Collecting points for travel has never been so easy!</h2>
@@ -147,26 +142,21 @@ Googlemaps API key: AIzaSyClW6h6xMardy7pDYZaJ5QV9_12XvGzYxc
 			</div><!-- promotionsEnding -->
 		</section><!-- promotions -->
 	</div><!-- /.wrapper -->
-
+<!-- ==============================================================
+FOOTER
+=====================================================================-->
 	<footer>
 		<p>&copy 2015 Alex Davey, James McDermid, and Anya Craig</p>
 	</footer>
 
-	
-	
-
-
 	<!-- =============================================================
 	SCRIPTS
 	================================================================ -->
-
 	<!-- jQuery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<!-- flickity -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/flickity/1.1.0/flickity.pkgd.min.js"></script>
 	<!-- custom scripts -->
-	<script src="js/flickity.pkgd.min.js"></script>
-	<!-- flickity.js -->
 	<script src="js/scripts.js"></script>
-
-
 </body>
 </html>

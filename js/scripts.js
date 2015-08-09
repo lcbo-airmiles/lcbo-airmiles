@@ -5,8 +5,7 @@
 var app = {};
 // james' LCBO api key
 app.jamesAPI = 'MDo1ZmMzNGQ0Yy0zYWVmLTExZTUtODFkYi02YmQ0ZWM1NzJlOTQ6RDNTeEVIS1M4Zlh1M0E1UUZjMlFuRzFMWkhzbzcyeUQ2bnRN';
-// james' mapbox api key
-app.jamesMapbox = 'pk.eyJ1Ijoiamltc2F1cnVzIiwiYSI6IjM0NmIzMjllNGQzYzBlODY4NTQwMjlkMTA4YmM1OWIzIn0.GzyjWKJ4nnZarMZpjPCanQ';
+
 // user input variable
 app.userInput = '';
 
@@ -53,6 +52,13 @@ app.stores = function(){
 
 		console.log(data.result);
 		
+var app = {};
+//LEAFLET MAPBOX
+var alexID = 'alexandradavey.n42d3egc';
+var alexMap = 'https://a.tiles.mapbox.com/v4/alexandradavey.n42d3egc/page.html?access_token=pk.eyJ1IjoiYWxleGFuZHJhZGF2ZXkiLCJhIjoiNWI5NWYzY2Q0NTQyYjYyMmFjNWY5ZWEwZGE5MjAxZWMifQ.yQUY4RtfbkaeoUlcbsxy8g#4/45.89/-75.63';
+var alexkey = 'pk.eyJ1IjoiYWxleGFuZHJhZGF2ZXkiLCJhIjoiNWI5NWYzY2Q0NTQyYjYyMmFjNWY5ZWEwZGE5MjAxZWMifQ.yQUY4RtfbkaeoUlcbsxy8g';
+L.mapbox.accessToken = alexkey;
+app.map = L.mapbox.map('map',alexID).setView([44.129, -79.306], 7);
 	}); //end results function
 } // end stores function
 
@@ -60,6 +66,14 @@ app.stores = function(){
 
 //2. (as another option)We want the user to enable "geo location" to receive their location via 
 //GoogleMaps / Map Box, by clicking a button.
+function showPosition(position) {
+    var latlon = position.coords.latitude + "," + position.coords.longitude;
+
+    var img_url = "http://maps.googleapis.com/maps/api/staticmap?center=
+    "+latlon+"&zoom=14&size=400x300&sensor=false";
+
+    document.getElementById("mapholder").innerHTML = "<img src='"+img_url+"'>";
+}
 
 
 //3. We want to 'smooth scroll' their results (whichever method they selected) further down the page.
@@ -75,13 +89,6 @@ app.stores = function(){
 //use jquery to hide the div - > SHOW the hidden div BEFORE the map is revealed, make
 //the map slide in after we have shown the div. make the div first AND THEN put the map on the page.
 
-var app = {};
-//LEAFLET MAPBOX
-var alexID = 'alexandradavey.n42d3egc';
-var alexMap = 'https://a.tiles.mapbox.com/v4/alexandradavey.n42d3egc/page.html?access_token=pk.eyJ1IjoiYWxleGFuZHJhZGF2ZXkiLCJhIjoiNWI5NWYzY2Q0NTQyYjYyMmFjNWY5ZWEwZGE5MjAxZWMifQ.yQUY4RtfbkaeoUlcbsxy8g#4/45.89/-75.63';
-var alexkey = 'pk.eyJ1IjoiYWxleGFuZHJhZGF2ZXkiLCJhIjoiNWI5NWYzY2Q0NTQyYjYyMmFjNWY5ZWEwZGE5MjAxZWMifQ.yQUY4RtfbkaeoUlcbsxy8g';
-L.mapbox.accessToken = alexkey;
-app.map = L.mapbox.map('#map',alexID).setView([44.129, -79.306], 7);
 
 
 
@@ -102,11 +109,11 @@ app.map = L.mapbox.map('#map',alexID).setView([44.129, -79.306], 7);
 app.init = function(){
 
 //7. We want to display the available promotion images in a flickity gallery.
-$('.gallery').flickity({
+	$('.gallery').flickity({
 	 	  // options
-	 	  cellAlign: 'left',
+	 	cellAlign: 'left',
 	  	contain: true
-		});
+	});
 
 	app.products();
 	app.stores();
