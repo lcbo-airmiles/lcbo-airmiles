@@ -203,8 +203,8 @@ app.init = function(){
 
 //7. We want to display the available promotion images in a flickity gallery.
 $('.gallery').flickity({
-	 	  // options
-	 	  cellAlign: 'left',
+	 	// options
+	 	cellAlign: 'left',
 	  	contain: true
 		});
 
