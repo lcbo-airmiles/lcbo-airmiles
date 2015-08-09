@@ -261,6 +261,7 @@ header {
   clear: both;
   display: block;
   padding: 70px 0 70px 0;
+  margin-bottom: 70px;
 }
 
 .airMiles input[type=text],
