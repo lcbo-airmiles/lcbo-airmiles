@@ -34,6 +34,29 @@ app.stores = function(location){
 		app.store1 = data.result[0];
 		app.store2 = data.result[1];
 		app.store3 = data.result[2];
+		
+
+		app.store1lat = data.result[0].latitude;
+		console.log(app.store1lat);
+		app.store2lat = data.result[1].latitude;
+		console.log(app.store2lat);
+		app.store3lat = data.result[2].latitude;
+		console.log(app.store3lat);
+
+
+		app.store1lon = data.result[0].longitude;
+		console.log(app.store1lon);
+		app.store2lon = data.result[1].longitude;
+		console.log(app.store2lon);
+		app.store3lon = data.result[2].longitude;
+		console.log(app.store3lon);
+	
+	
+		app.mapMarker ();
+
+		$(".locations").show()
+		
+
 
 		//map marker app,mapPins(.app.store.1)
 
@@ -123,19 +146,24 @@ app.storeSelector = function(){
 		app.promoBooze(app.store1, 'beer');
 		app.promoBooze(app.store1, 'wine');
 		app.promoBooze(app.store1, 'spirits');
+		$(".promotions").removeClass("hidden");
 	});
 	$('.store2').on('click', function(){
 		//remove old flickity cells
 		app.promoBooze(app.store2, 'beer');
 		app.promoBooze(app.store2, 'wine');
 		app.promoBooze(app.store2, 'spirits');
+		$(".promotions").removeClass("hidden");
 	});
 	$('.store3').on('click', function(){
 		//remove old flickity cells
 		app.promoBooze(app.store3, 'beer');
 		app.promoBooze(app.store3, 'wine');
 		app.promoBooze(app.store3, 'spirits');
+		$(".promotions").removeClass("hidden");
 	});
+
+	$(".store-location").text(" your store!");
 
 }
 
@@ -145,6 +173,7 @@ app.storeSelector = function(){
 
 // =============================================================================
 // OPENING HOURS FUNCTION
+
 // =============================================================================
 //the api returns time in minutes since midnight...therfore we must convert them to 12hr time
 //we pass in the store object so we can see the times they open and close each day
@@ -329,26 +358,41 @@ mapLeaflet.scrollWheelZoom.disable();
 
 
 
+//MAP SHOWING MARKERS
+ L.mapbox.accessToken = 'pk.eyJ1Ijoiamltc2F1cnVzIiwiYSI6IjM0NmIzMjllNGQzYzBlODY4NTQwMjlkMTA4YmM1OWIzIn0.GzyjWKJ4nnZarMZpjPCanQ';
+	var mapLeaflet  = L.mapbox.map('map','mapbox.streets')
+	.setView ([43.67023, -79.38676], 14)
+
+	app.mapMarker = function(){
+		console.log('Find Three Locations!');
+
+
 
 
 //2. (as another option)We want the user to enable "geo location" to receive their location via 
 //GoogleMaps / Map Box, by clicking a button.
 //3. We want to 'smooth scroll' their results (whichever method they selected) further down the page.
 
-//4. We want to return 3 LCBO locations within their postal code parameters.
+   var featureLayer = L.mapbox.featureLayer()
+ 
+ //// ** NEW ## //// not working
+    featureLayer.on('ready', function() {
+    map.fitBounds(featureLayer.getBounds());
+	L.marker([app.store1lat, app.store1lon]).addTo(mapLeaflet);
+	L.marker([app.store2lat, app.store2lon]).addTo(mapLeaflet);
+	L.marker([app.store3lat, app.store3lon]).addTo(mapLeaflet);
+});
+//Places a Mapbox marker on the three locations via latitude and longitude. 
 
 
-//use jquery to hide the div - > SHOW the hidden div BEFORE the map is revealed, make
-//the map slide in after we have shown the div. make the div first AND THEN put the map on the page.
 
-//6. Once a store has been selected by the user, we will 'smooth scroll' to display the airmiles promotions, further down the page.
+mapLeaflet.scrollWheelZoom.disable();
+};
 
 
-//8. We want to display the available promotion information in a div (rgba) within the image.
+//ZOOM IN ON MARKERS
 
-//9. We want to create an option for the user to select another store.
 
-//10. We wabt to create an option for the user to zoom to the top of the page if they wish to search again.
 
 // =============================================================================
 // LOCATION LISTENER FUNCTION
@@ -385,15 +429,17 @@ app.init = function(){
 
 	app.map = L.mapbox.map('map',alexID);
 
+
 }; // end init function
 
 // =============================================================================
 // DOC READY RUN app.init()
 // =============================================================================
 $(function(){
+	$(".locations").hide();
+
+	console.log("hidden!");
 	console.log('document ready!');
 	app.init();
 }); // end document ready
-
-
 

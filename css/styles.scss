@@ -1,0 +1,378 @@
+// IMPORT SETUP STYLES
+//===================================================
+@import "setup";
+
+// VARIABLES
+//===================================================
+$black: #000;   
+$blue: #1893cc;
+$green: #bed993;     
+$white: #f7f6ed; 
+
+
+// HELPER STYLES
+// ===================================================
+
+.hidden {
+	display: none;
+}
+
+.block {
+	display: block;
+}
+
+// GENERAL STYLES
+// ===================================================
+
+
+* {
+	margin: 0;
+}
+
+html, 
+body {
+	height: 100%;
+
+}
+
+h1, h2, h3, h4, h5, h6{
+	font-family: 'Lora', serif;
+	font-weight: 700;
+}
+
+body{
+	font-family: 'Josefin Sans', sans-serif;
+	background: $white;
+	font-size: 10px;
+}
+//====================================
+//HEADER STYLES
+header {
+	background-image: url("../images/grapes-background.jpg"); 
+	background-color: rgba(43,7,7,0.4);
+	background-blend-mode: darken;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    width: 100%;
+    display: flex;
+    align-items: center;
+
+}
+.grapes img {
+	margin: 0 auto;
+	width: 30%;
+	padding: 2% 0;
+}
+
+//=====================================
+// AIR MILES STYLES
+//text air miles
+
+.airMiles {
+	background: $blue;
+	width: 100%;
+	padding: 0 10%;
+}	
+	//air miles cloud
+.airMilesLogo {
+	float: left;
+	width: 40%;
+	display: block;
+	display: flex;
+}
+.airMilesLogo img {
+	width: 100%;
+	padding: 15% 0;
+}
+	//air miles right side text
+.airMilesTitle {
+	color: $white;
+ 	width: 60%;
+	float: left;
+	padding: 4% 0 10% 4%;
+}
+//"discover this week's air miles"
+h1 {
+	font-size: 2.7rem;
+	text-shadow: 2px 2px 0 #000;
+}
+.pr {
+	font-family: 'Josefin Sans', sans-serif;
+	font-weight: 400;
+}
+//AIR MILES (form styles)
+#location {
+	clear: both;
+	display: block;
+	padding: 2%;
+}
+
+input[type=text], 
+	button {
+		width: 300px;
+		height: 60px;
+		border-radius: 5px;
+		text-transform: uppercase;
+		display: inline-block;	
+		border: none;
+		font-size: 1.5rem;
+		padding: 10px;
+		box-shadow: 2px 2px 5px #000;
+	}
+	button.submit {
+		width: 150px;
+		margin-left:10px;
+		font-size: 1.5rem;
+		background: $green;
+		color: $black;
+		font-weight: 700px;
+		margin-top: 30px;
+	}
+	::-webkit-input-placeholder {
+	 font-size: .8em;
+	 color: grey;
+	 text-transform: uppercase;
+	 text-align: center;
+	 padding-left: -15px;
+	 vertical-align: middle;
+	}
+	:-moz-placeholder { /* older Firefox*/
+	 font-size:14px;
+	 color: #d0cdfa;
+	 text-transform: uppercase;
+	 text-align: center;
+	 font-weight: bold;
+	}
+	::-moz-placeholder { /* Firefox 19+ */ 
+	 font-size: 14px;
+	 color: #d0cdfa; 
+	 text-transform: uppercase;
+	 text-align: center;
+	 font-weight: bold;
+	} 
+	:-ms-input-placeholder { 
+	 font-size: 14px; 
+	 color: #d0cdfa;
+	 text-transform: uppercase;
+	 text-align: center;
+	 font-weight: bold;
+	}
+//=============================================
+//LOCATION STYLES
+.locations {
+	width: 100%;
+	padding: 0 10% 2% 10%;
+	display: flex;
+}
+//left-side locations
+.stores {
+	width: 30%;
+	float: left;
+	background: $white;
+	cursor: pointer;
+}
+.storesTop {
+	background: $black;
+	color: $white;
+	text-align: center;
+}	
+//"stores closest to your location"
+.storesTop h3 {
+	font-size: 2.5em;
+	padding: 20px 0 10px 0;
+}
+//"select a store to view available"
+.storesTop h4 {
+	font-size: 1.5em;
+	padding-bottom: 20px;
+}
+h4.milesBlue {
+	color: $blue;
+}
+//the map icon
+.storeLeft {
+	float: left;
+	width: 25%;
+	text-align: center;
+	color: $green;
+	font-size: 2.3em;
+	text-shadow: 0 0 2px black;
+}
+.store {
+	padding: 15px 0;
+	font-size: 1.8em;
+	line-height: 1.3em;
+	background: #fff;
+	border-bottom: 1px dotted $green;
+}
+// Store Data
+.storeRight {
+	float: left;
+	width: 75%;
+}
+.storeRight p {
+	font-size: 1rem;
+}
+//Right Side MAP
+.map {
+	width: 70%;
+	float: left;
+}
+
+//================================
+// PROMOTIONS STYLES
+.gallery-wrapper {
+	margin: auto;
+}
+//both luggage and text
+.promotionsEnding {
+	width: 100%;
+	display: flex;
+	background-image: url("../images/grapes-background.jpg"); 
+	background-color: rgba(43,7,7,0.4);
+	background-blend-mode: darken;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    padding: 3% 10%;
+
+}
+.promotionsEnding h2 {
+	display: inline;
+	font-size: 2rem;
+	color: $white;
+	float: left;
+	margin: 0 auto;
+	padding: 0 20%;
+	text-align: center;
+
+
+}
+//"Air Miles Promotions for your location"
+.promotionsTitle h3 {
+	color: $black;
+	font-size: 2rem;
+	text-align: center;
+	padding: 5%
+}
+//========================================
+//FLICKITY GALLERY STYLES
+.gallery {
+	background: $white;
+	margin: 0 auto 50px auto;
+	height: 500px;
+}
+.gallery-cell {
+	background: $white;
+	width: 250px;
+	margin: 30px 1%;
+	height: 500px;
+	margin: 0 10px;
+	position: relative;
+}
+img {
+	width: 100%;
+	height: 70%;	
+}
+p {
+	background: #fff;
+	color: $black;
+	font-size: 20px;
+}
+//======================================
+//FOOTER STYLES
+footer {
+	background-color:rgba(248, 247, 237, 1);
+	color: #fff;
+	text-align: center;
+	line-height: 60px;
+	font-size: 1.5em;
+}
+footer a {
+	 color: $green;
+	 text-decoration: none;
+}
+//MEDIA STYLES
+@media (max-width: 1040px) {
+	h1 {
+		font-size: 2rem;
+	}
+	input[type=text], button {
+	    width: 250px;
+	    height: 40px;
+	    font-size: 1.2rem;
+	}
+	button.submit {
+	    width: 100px;
+	    font-size: 1rem;
+	}
+}
+@media (max-width: 755px) {
+	h1 {
+		font-size: 1.5rem;
+	}
+	input[type=text], button {
+    	width: 200px;
+	}
+	.storesTop h3 {
+    	font-size: 1.4rem;
+    	padding: 20px 0 10px 0;
+	}
+	.store  {
+		font-size: 1rem;
+	}
+	.locations {
+		padding: 0;
+	}	
+	.promotionsEnding h2 {
+   		font-size: 1.5rem;
+   	}
+   	.promotionsTitle h3 {	
+    	font-size: 1.5rem;
+	}
+	p {
+    	font-size: 0.9rem;
+	}
+}
+@media (max-width: 633px) {
+	input[type=text], button {
+    	width: 200px;
+    	font-size: 1rem;
+	}
+}
+@media (max-width: 600px) {
+	.store, .map {
+		float: none;
+		clear: both;
+		display: block;
+	}
+.airMilesLogo {
+    float: left;
+    width: 70%;
+    padding-top: 1%; 
+	}
+.airMilesLogo img {
+	 padding: 5% 0 0 0; 
+}	
+.airMilesTitle {
+	width: 100%;
+	padding:2%
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
