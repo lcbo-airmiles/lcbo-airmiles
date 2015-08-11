@@ -30,15 +30,39 @@ app.stores = function(location){
 	}).then(function(data) {
 		console.log('These are the 5 stores closest to the USER');
 		//just grab the first location to start
+		console.log(data);
 		app.store1 = data.result[0];
 		app.store2 = data.result[1];
 		app.store3 = data.result[2];
+		
+
+		app.store1lat = data.result[0].latitude;
+		console.log(app.store1lat);
+		app.store2lat = data.result[1].latitude;
+		console.log(app.store2lat);
+		app.store3lat = data.result[2].latitude;
+		console.log(app.store3lat);
+
+
+		app.store1lon = data.result[0].longitude;
+		console.log(app.store1lon);
+		app.store2lon = data.result[1].longitude;
+		console.log(app.store2lon);
+		app.store3lon = data.result[2].longitude;
+		console.log(app.store3lon);
+	
+	
+		app.mapMarker ();
+
+		$(".locations").show()
+		
+
 
 		//	POPULATE THE ADDRESS INFO ====================
 		//STORE 1
 		$('.address1').text(data.result[0].address_line_1);
 		$('.cityPostal1').text(data.result[0].city + ', ' + data.result[0].postal_code);
-		$('.phoneNubmber1').text(data.result[0].telephone);
+		$('.phoneNumber1').text(data.result[0].telephone);
 		//store hours
 		var store1Hours = dayWeek(data.result[0]);
 		var store1Open = msmTo12time(store1Hours[0]);
@@ -48,7 +72,7 @@ app.stores = function(location){
 		//STORE 2
 		$('.address2').text(data.result[1].address_line_1);
 		$('.cityPostal2').text(data.result[1].city + ', ' + data.result[1].postal_code);
-		$('.phoneNubmber2').text(data.result[1].telephone);
+		$('.phoneNumber2').text(data.result[1].telephone);
 		//store hours
 		var store2Hours = dayWeek(data.result[1]);
 		var store2Open = msmTo12time(store2Hours[0]);
@@ -59,7 +83,7 @@ app.stores = function(location){
 		//STORE 3
 		$('.address3').text(data.result[2].address_line_1);
 		$('.cityPostal3').text(data.result[2].city + ', ' + data.result[2].postal_code);
-		$('.phoneNubmber3').text(data.result[2].telephone);
+		$('.phoneNumber3').text(data.result[2].telephone);
 		//store hours
 		var store3Hours = dayWeek(data.result[2]);
 		var store3Open = msmTo12time(store3Hours[0]);
@@ -82,19 +106,24 @@ app.storeSelector = function(){
 		app.promoBooze(app.store1, 'beer');
 		app.promoBooze(app.store1, 'wine');
 		app.promoBooze(app.store1, 'spirits');
+		$(".promotions").removeClass("hidden");
 	});
 	$('.store2').on('click', function(){
 		//remove old flickity cells
 		app.promoBooze(app.store2, 'beer');
 		app.promoBooze(app.store2, 'wine');
 		app.promoBooze(app.store2, 'spirits');
+		$(".promotions").removeClass("hidden");
 	});
 	$('.store3').on('click', function(){
 		//remove old flickity cells
 		app.promoBooze(app.store3, 'beer');
 		app.promoBooze(app.store3, 'wine');
 		app.promoBooze(app.store3, 'spirits');
+		$(".promotions").removeClass("hidden");
 	});
+
+	$(".store-location").text(" your store!");
 
 }
 
@@ -104,6 +133,7 @@ app.storeSelector = function(){
 
 // =============================================================================
 // OPENING HOURS FUNCTION
+
 // =============================================================================
 //the api returns time in minutes since midnight...therfore we must convert them to 12hr time
 //we pass in the store object so we can see the times they open and close each day
@@ -270,27 +300,34 @@ app.inStock = function(items, store){
 
 }//instock function
 
-//2. (as another option)We want the user to enable "geo location" to receive their location via 
-//GoogleMaps / Map Box, by clicking a button.
+//MAP SHOWING MARKERS
+ L.mapbox.accessToken = 'pk.eyJ1Ijoiamltc2F1cnVzIiwiYSI6IjM0NmIzMjllNGQzYzBlODY4NTQwMjlkMTA4YmM1OWIzIn0.GzyjWKJ4nnZarMZpjPCanQ';
+	var mapLeaflet  = L.mapbox.map('map','mapbox.streets')
+	.setView ([43.67023, -79.38676], 14)
+
+	app.mapMarker = function(){
+		console.log('Find Three Locations!');
 
 
-//3. We want to 'smooth scroll' their results (whichever method they selected) further down the page.
+   var featureLayer = L.mapbox.featureLayer()
+ 
+ //// ** NEW ## //// not working
+    featureLayer.on('ready', function() {
+    map.fitBounds(featureLayer.getBounds());
+	L.marker([app.store1lat, app.store1lon]).addTo(mapLeaflet);
+	L.marker([app.store2lat, app.store2lon]).addTo(mapLeaflet);
+	L.marker([app.store3lat, app.store3lon]).addTo(mapLeaflet);
+});
+//Places a Mapbox marker on the three locations via latitude and longitude. 
 
-//4. We want to return 3 LCBO locations within their postal code parameters.
 
-//5. We want to return a map displaying their LCBO locations using markers.
-
-//use jquery to hide the div - > SHOW the hidden div BEFORE the map is revealed, make
-//the map slide in after we have shown the div. make the div first AND THEN put the map on the page.
-
-//6. Once a store has been selected by the user, we will 'smooth scroll' to display the airmiles promotions, further down the page.
+mapLeaflet.scrollWheelZoom.disable();
+};
 
 
-//8. We want to display the available promotion information in a div (rgba) within the image.
+//ZOOM IN ON MARKERS
 
-//9. We want to create an option for the user to select another store.
 
-//10. We wabt to create an option for the user to zoom to the top of the page if they wish to search again.
 
 // =============================================================================
 // LOCATION LISTENER FUNCTION
@@ -324,17 +361,20 @@ app.init = function(){
 	var alexMap = 'https://a.tiles.mapbox.com/v4/alexandradavey.n42d3egc/page.html?access_token=pk.eyJ1IjoiYWxleGFuZHJhZGF2ZXkiLCJhIjoiNWI5NWYzY2Q0NTQyYjYyMmFjNWY5ZWEwZGE5MjAxZWMifQ.yQUY4RtfbkaeoUlcbsxy8g#4/45.89/-75.63';
 	var alexkey = 'pk.eyJ1IjoiYWxleGFuZHJhZGF2ZXkiLCJhIjoiNWI5NWYzY2Q0NTQyYjYyMmFjNWY5ZWEwZGE5MjAxZWMifQ.yQUY4RtfbkaeoUlcbsxy8g';
 	L.mapbox.accessToken = alexkey;
-	app.map = L.mapbox.map('map',alexID).setView([44.129, -79.306], 8);
-	
+
+	app.map = L.mapbox.map('map',alexID);
+
+
 }; // end init function
 
 // =============================================================================
 // DOC READY RUN app.init()
 // =============================================================================
 $(function(){
+	$(".locations").hide();
+
+	console.log("hidden!");
 	console.log('document ready!');
 	app.init();
 }); // end document ready
-
-
 

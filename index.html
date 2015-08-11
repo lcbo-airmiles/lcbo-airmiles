@@ -39,121 +39,108 @@
 <!-- ==============================================================
 START OF BODY 
 =====================================================================-->
-
-
-	<div class="wrapper clearfix">
 		<header class="grapes">
 			<img src="images/LCBO-logo.svg" alt="LCBO 2015 logo">
 		</header>
 
 
-<!-- EVERYTHING UNDER HERE IS GOOD -->
-
-
-		<section class="blackBar"></section><!-- the black bar under the header -->
 <!-- ==============================================================
 USER INPUT SECTION
 =====================================================================-->
 		<section class="airMiles clearfix">
-			<div class="airMilesTop clearfix">
 				<div class="airMilesLogo">
 					<img src="images/airMilesCloud.png" alt="The Air Miles Logo set on a white cloud">
-				</div>
+				</div><!-- airMilesLogo -->
+
 				<div class="airMilesTitle">
-					<h1>Discover this week's Air Miles Promotions closest to you!</h1>
+					<h1>Discover this week's <span class="pr">AIR MILES</span> Promotions closest to you!</h1>
+
+					<form id="location">
+						<input type="text" class="user-input" placeholder="Enter your Postal Code">
+						<a href="#locations"><button class="submit">Submit</button></a>
+					</form><!-- location -->
+
 				</div><!-- airMilesTitle -->
-			</div>
-			<form id="location">
-				<input type="text" class="user-input" placeholder="Enter your Postal Code">
-				<a href="#locations"><button class="submit">Submit</button></a>
-				<h2> or </h2>
-				<button>Use Your Location</button>
-			</form><!-- inputArea -->
 		</section><!-- airMiles -->
 <!-- ==============================================================
 LOCATIONS
 =====================================================================-->
-		<section class="blackBar"></section><!-- the black bar under the header -->
 
-		<section id="locations" class="locations hidden clearfix">
-
+		<section id="locations" class="locations">
 			<div class="stores"> 
 				<div class="storesTop clearfix">
 					<h3>Stores Closest to You</h3>
-					<h4>Select a store to view available <span class="block"></span>Air Miles promotions</h4>
-				</div><!-- /.storesTop -->
+					<h4>Select a store to view available<br><span class="pr">AIR MILES</span> Promotions</h4>
+				</div><!-- storesTop -->
+		<!-- Store 1 -->
 				<div class="storesBottom clearfix">
 					<div class="store store1 clearfix">
 						<div class="storeLeft store1Left">
 							<i class="fa fa-map-marker"></i>
-						</div> <!-- /.storeLeft -->
-						<div class="storeRight store1Right">
-							<p class="address1">Store Street Address</p>
-							<p class="cityPostal1">City and Postal Code</p>
-							<p class="phoneNumber1">Phone Number</p>
-							<p class="openHours1">Opening Hours Today</p>
-						</div> <!-- /.storeRight -->
-					</div> <!-- /.store1 -->
-
-					<div class="store store2 clearfix">
-						<div class="storeLeft store2Left">
-							<i class="fa fa-map-marker"></i>
-						</div> <!-- /.storeLeft -->
-						<div class="storeRight store2Right">
-							<p class="address2">Store Street Address</p>
-							<p class="cityPostal2">City and Postal Code</p>
-							<p class="phoneNumber2">Phone Number</p>
-							<p class="openHours2">Opening Hours Today</p>
-						</div> <!-- /.storeRight -->
-					</div> <!-- /.store2 -->
-
-					<div class="store store3 clearfix">
-						<div class="storeLeft store3Left">
-							<i class="fa fa-map-marker"></i>
-						</div> <!-- /.storeLeft -->
-						<div class="storeRight store3Right">
-							<p class="address3">Store Street Address</p>
-							<p class="cityPostal3">City and Postal Code</p>
-							<p class="phoneNumber3">Phone Number</p>
-							<p class="openHours3">Opening Hours Today</p>
-						</div> <!-- /.storeRight -->
-					</div> <!-- /.store3 -->
-
-				</div><!-- /.storesBottom -->
+						</div> <!-- storeLeft -->
+				<div class="storeRight store1Right">
+					<p class="address1">Store Street Address</p>
+					<p class="cityPostal1">City and Postal Code</p>
+					<p class="phoneNumber1">Phone Number</p>
+					<p class="openHours1">Opening Hours Today</p>
+				</div> <!-- storeRight -->
+					</div> <!-- store1 -->
+		<!-- Store 2 -->
+				<div class="store store2 clearfix">
+					<div class="storeLeft store2Left">
+						<i class="fa fa-map-marker"></i>
+					</div> <!-- /.storeLeft -->
+				<div class="storeRight store2Right">
+					<p class="address2">Store Street Address</p>
+					<p class="cityPostal2">City and Postal Code</p>
+					<p class="phoneNumber2">Phone Number</p>
+					<p class="openHours2">Opening Hours Today</p>
+				</div> <!-- storeRight -->
+					</div> <!-- store2 -->
+		<!-- Store 3 -->
+				<div class="store store3 clearfix">
+					<div class="storeLeft store3Left">
+						<i class="fa fa-map-marker"></i>
+					</div> <!-- /.storeLeft -->
+				<div class="storeRight store3Right">
+					<p class="address3">Store Street Address</p>
+					<p class="cityPostal3">City and Postal Code</p>
+					<p class="phoneNumber3">Phone Number</p>
+					<p class="openHours3">Opening Hours Today</p>
+				</div> <!-- storeRight -->
+					</div> <!-- store3 -->
+				</div><!-- storesBottom -->
 			</div><!-- stores -->
+
+		<!-- Right Side MAP -->
 			<div class="map" id="map">
 			</div><!-- map -->
 		</section><!-- locations -->
-
-		<section class="blackBar"></section><!-- the black bar under the header -->
+	
 <!-- ==============================================================
 PROMOTIONS
 =====================================================================-->
-
 		<section id="promotions" class="promotions hidden">
+			<div class="gallery-wrapper">
+				<div class="promotionsEnding clearfix">
+					<h2>Collecting points for travel has never been so easy!</h2>
+				</div><!-- promotionsEnding -->
 
-			<div class="promotionsTitle">	
-				<h3>Air Miles Promotions for<span class="store-location"><!-- store location --></span></h3>
-			</div><!-- promotionsTitle -->
-			
-			<div class="gallery js-flickity" data-flickity-options='{ "wrapAround": true }'> <!-- aka flickity -->	
-				<!-- items filled in by js -->
-			</div><!-- gallery aka flickity-->
-			<div class="promotionsEnding clearfix">
-				<div class="promotionsEndingLeft">
-					<img src="luggage_icon.png" class="animated slideInLeft" alt="an vector icon of a suitcase covered in stickers">
-				</div> <!-- /.promotionsEndingLeft -->
-				<div class="promotionsEndingRight">
-					<h2 class="animated slideInRight">Collecting points for travel has never been so easy!</h2>
-				</div><!-- /.promotionsEndingRight -->
-			</div><!-- promotionsEnding -->
+				<div class="promotionsTitle">	
+					<h3><span class="pr">AIR MILES</span> Promotions from <span class="store-location"></span></h3>
+				</div><!-- promotionsTitle -->
+				
+				<div class="gallery js-flickity" data-flickity-options='{ "wrapAround": true }'> 
+					<!-- items filled in by js -->
+				</div><!-- gallery js-flickity-->
+
+			</div><!-- gallery-wrapper -->
 		</section><!-- promotions -->
-	</div><!-- /.wrapper -->
 <!-- ==============================================================
 FOOTER
 =====================================================================-->
 	<footer>
-		<p>&copy 2015 Alex Davey, James McDermid, and Anya Craig</p>
+		<p>&copy 2015 <a href="www.alexdavey.ca">Alex Davey</a>, <a href="www.jamesmcdermid.ca">James McDermid</a>, and <a href="www.anyacraig.com">Anya Craig</a></p>
 	</footer>
 
 	<!-- =============================================================
